@@ -3,8 +3,7 @@ import styled from 'styled-components';
 import { NavLink, Switch, Route, BrowserRouter } from 'react-router-dom';
 import Home from './componentes/Home';
 import Mobiles from './componentes/Mobiles';
-import Tienda from './componentes/Tienda';
-import Error404 from './componentes/Error404';
+// import Error404 from './componentes/Error404';
 import Carrito from './componentes/Carrito';
 import Headphones from './componentes/Headphones';
 import Laptops from './componentes/Laptops';
@@ -98,7 +97,6 @@ const App = () => {
                 <Menu >
                     <NavLink to="/" onClick={hideCart}>Home</NavLink>
                     <NavLink to="/mobiles" onClick={unHideCart}>Mobiles</NavLink>
-                    <NavLink to="/tienda" onClick={unHideCart}>Tienda</NavLink>
                     <NavLink to="/headphones" onClick={unHideCart}> Headphones</NavLink>
                     <NavLink to="/laptops" onClick={unHideCart}> Laptops</NavLink>
                     <NavLink to="/checkout" onClick={hideCart}> <img src={process.env.PUBLIC_URL + `/Assets/shopping-cart.png`} width='30' /></NavLink>
@@ -115,17 +113,11 @@ const App = () => {
                         <Route path="/laptops">
                             <Laptops agregarProductoAlCarrito={agregarProductoAlCarrito} />
                         </Route>
-                        <Route path="/tienda">
-
-                            <Tienda
-                                productos={productos}
-                                agregarProductoAlCarrito={agregarProductoAlCarrito}
-                            />
-                        </Route>
+                    
                         <Route path="/checkout">
                             <Checkout carrito={carrito} removeItemFromCart={removeItemFromCart} clearCart={clearCart} />
                         </Route>
-                        <Route component={Error404} />
+                        {/* <Route component={Error404} /> */}
                     </Switch>
                 </main>
                 {hide ?
