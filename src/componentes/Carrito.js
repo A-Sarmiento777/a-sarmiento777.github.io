@@ -19,7 +19,7 @@ const Carrito = ({ carrito, hideCart }) => {
 							<div>Price: {producto.price+' kr'}</div>
 							<div>Quantity: {producto.cantidad}</div>
 
-							<img src={process.env.PUBLIC_URL + `/Assets/${producto.type}/${producto.nombre}.jpg`} width='150' />
+							<img src={process.env.PUBLIC_URL + `/Assets/${producto.type}/${producto.nombre}.jpg`} width='100' />
 
 						</Producto>
 					);

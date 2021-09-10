@@ -7,7 +7,6 @@ const Checkout = ({ carrito, removeItemFromCart, clearCart }) => {
 
     return (
         <div>
-            <h3>Carrito de Compras</h3>
             {carrito.length ? <table style={{ width: '100%' }}>
                 <thead>
                     <tr>
@@ -23,7 +22,7 @@ const Checkout = ({ carrito, removeItemFromCart, clearCart }) => {
                         return (
                             <>
                                 <tr>
-                                    <td><img src={process.env.PUBLIC_URL + `/Assets/${producto.type}/${producto.nombre}.jpg`} width='150' /></td>
+                                    <td><img src={process.env.PUBLIC_URL + `/Assets/${producto.type}/${producto.nombre}.jpg`} width='100' /></td>
                                     <td>{producto.nombre}</td>
                                     <td>{producto.cantidad}</td>
                                     <td>{producto.price}</td>
@@ -37,10 +36,12 @@ const Checkout = ({ carrito, removeItemFromCart, clearCart }) => {
 
             {carrito.length ? <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
                 <div>
-                    Total Amount: {totalAmount}
+                Price: {totalAmount - ((totalAmount * 25) / 100)+ ' kr'}
+                    
                 </div>
                 <div>
-                    After Tax: {totalAmount - ((totalAmount * 30) / 100)}
+                Incl moms: {totalAmount + ' kr'}
+                   
                 </div>
                 <div>
                     <button style={{ backgroundColor: 'black', color: 'white' }} onClick={() => {
