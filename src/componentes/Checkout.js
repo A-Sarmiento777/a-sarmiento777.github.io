@@ -1,6 +1,4 @@
 import React from 'react';
-import { Redirect } from 'react-router';
-import styled from 'styled-components';
 
 const Checkout = ({ carrito, removeItemFromCart, clearCart }) => {
 

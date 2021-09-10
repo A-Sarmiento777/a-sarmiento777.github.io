@@ -34,7 +34,7 @@ const Mobiles = ({agregarProductoAlCarrito}) => {
 				return (
 					<div style={{width: '50%'}}>
 						<div style={{fontSize: '18px', fontWeight: 'bold'}}>{mobile?.name}</div>
-						<div>Price: ${mobile?.price}</div>
+						<div>Price: {mobile?.price} kr</div>
 						<img src={process.env.PUBLIC_URL + `/Assets/mobiles/${mobile?.name}.jpg`} width='150' />
 						<div>
 						<button style={{backgroundColor: 'yellow', padding: '8px 14px'}} onClick={() => agregarProductoAlCarrito(mobile?.id + 'm', mobile?.name, mobile?.price, 'mobiles')}>Add</button>

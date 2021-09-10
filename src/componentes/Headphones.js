@@ -34,7 +34,7 @@ const Headphones = ({agregarProductoAlCarrito}) => {
 				return (
 					<div style={{width: '50%'}}>
 						<div style={{fontSize: '18px', fontWeight: 'bold'}}>{headphone?.name}</div>
-						<div>Price: ${headphone?.price}</div>
+						<div>Price: {headphone?.price} kr</div>
 						<img src={process.env.PUBLIC_URL + `/Assets/headphones/${headphone?.name}.jpg`} width='150' />
 						<div>
 						<button style={{backgroundColor: 'yellow', padding: '8px 14px'}} onClick={() => agregarProductoAlCarrito(headphone?.id + 'h', headphone?.name, headphone?.price, 'headphones')}>Add</button>

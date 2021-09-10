@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { NavLink, Switch, Route, BrowserRouter } from 'react-router-dom';
 import Home from './componentes/Home';
 import Mobiles from './componentes/Mobiles';
-// import Error404 from './componentes/Error404';
 import Carrito from './componentes/Carrito';
 import Headphones from './componentes/Headphones';
 import Laptops from './componentes/Laptops';
@@ -151,7 +150,7 @@ const Menu = styled.nav`
     a {
         color: #fff;
         display: inline-block;
-        padding: 15px 20px;
+        padding: 15px 60px;
     }
  
     a:hover {
