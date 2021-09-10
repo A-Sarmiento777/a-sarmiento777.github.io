@@ -16,8 +16,8 @@ const Carrito = ({ carrito, hideCart }) => {
 							<NombreProducto>
 								{producto.nombre}
 							</NombreProducto>
-							<div>Price: {producto.price}</div>
-							<div>Cantidad: {producto.cantidad}</div>
+							<div>Price: {producto.price+' kr'}</div>
+							<div>Quantity: {producto.cantidad}</div>
 
 							<img src={process.env.PUBLIC_URL + `/Assets/${producto.type}/${producto.nombre}.jpg`} width='150' />
 
@@ -25,15 +25,15 @@ const Carrito = ({ carrito, hideCart }) => {
 					);
 				})
 				:
-				<p>Aun no has agregado productos al carrito</p>
+				<p>You have not add any item yet</p>
 			}
 
 			{carrito.length ? <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
 				<div>
-					Total Amount: {totalAmount}
+				Price: {totalAmount - ((totalAmount * 25) / 100) +' kr'}
 				</div>
 				<div>
-					After Tax: {totalAmount - ((totalAmount * 30) / 100)}
+				Incl moms : {totalAmount+' kr'}
 				</div>
 				<div>
 					<Link to='/checkout'>

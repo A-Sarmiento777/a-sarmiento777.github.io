@@ -117,7 +117,7 @@ const App = () => {
                         <Route path="/checkout">
                             <Checkout carrito={carrito} removeItemFromCart={removeItemFromCart} clearCart={clearCart} />
                         </Route>
-                        {/* <Route component={Error404} /> */}
+                        
                     </Switch>
                 </main>
                 {hide ?
