@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { NavLink, Switch, Route } from 'react-router-dom';
+import { NavLink, Switch, Route, BrowserRouter } from 'react-router-dom';
 import Home from './componentes/Home';
 import Mobiles from './componentes/Mobiles';
 import Tienda from './componentes/Tienda';
@@ -86,52 +86,54 @@ const App = () => {
         }
     }
 
-<div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
-    const removeItemFromCart = (id)  => {
+    const removeItemFromCart = (id) => {
         let data = carrito && carrito.filter(item => item.id !== id)
         cambiarCarrito(data)
     }
 
     return (
-        <Container>
-            <Menu >
-                <NavLink to="/" onClick={hideCart}>Home</NavLink>
-                <NavLink to="/mobiles" onClick={unHideCart}>Mobiles</NavLink>
-                <NavLink to="/tienda" onClick={unHideCart}>Tienda</NavLink>
-                <NavLink to="/headphones" onClick={unHideCart}> Headphones</NavLink>
-                <NavLink to="/laptops" onClick={unHideCart}> Laptops</NavLink>
-                <NavLink to="/checkout" onClick={hideCart}> <img src={process.env.PUBLIC_URL + `/Assets/shopping-cart.png`} width='30' /></NavLink>
-            </Menu>
-            <main>
-                <Switch>
-                    <Route path="/" exact={true} component={Home} />
-                    <Route path="/mobiles">
-                        <Mobiles agregarProductoAlCarrito={agregarProductoAlCarrito} />
-                    </Route>
-                    <Route path="/headphones">
-                        <Headphones agregarProductoAlCarrito={agregarProductoAlCarrito} />
-                    </Route>
-                    <Route path="/laptops">
-                        <Laptops agregarProductoAlCarrito={agregarProductoAlCarrito} />
-                    </Route>
-                    <Route path="/tienda">
 
-                        <Tienda
-                            productos={productos}
-                            agregarProductoAlCarrito={agregarProductoAlCarrito}
-                        />
-                    </Route>
-                    <Route path="/checkout">
-                        <Checkout carrito={carrito} removeItemFromCart={removeItemFromCart} clearCart={clearCart}/>
-                    </Route>
-                    <Route component={Error404} />
-                </Switch>
-            </main>
-            {hide ?
-                null : <aside>
-                    <Carrito carrito={carrito} hideCart={hideCart}/>
-                </aside>}
-        </Container>
+        <BrowserRouter>
+            <Container>
+                <Menu >
+                    <NavLink to="/" onClick={hideCart}>Home</NavLink>
+                    <NavLink to="/mobiles" onClick={unHideCart}>Mobiles</NavLink>
+                    <NavLink to="/tienda" onClick={unHideCart}>Tienda</NavLink>
+                    <NavLink to="/headphones" onClick={unHideCart}> Headphones</NavLink>
+                    <NavLink to="/laptops" onClick={unHideCart}> Laptops</NavLink>
+                    <NavLink to="/checkout" onClick={hideCart}> <img src={process.env.PUBLIC_URL + `/Assets/shopping-cart.png`} width='30' /></NavLink>
+                </Menu>
+                <main>
+                    <Switch>
+                        <Route path="/" exact={true} component={Home} />
+                        <Route path="/mobiles">
+                            <Mobiles agregarProductoAlCarrito={agregarProductoAlCarrito} />
+                        </Route>
+                        <Route path="/headphones">
+                            <Headphones agregarProductoAlCarrito={agregarProductoAlCarrito} />
+                        </Route>
+                        <Route path="/laptops">
+                            <Laptops agregarProductoAlCarrito={agregarProductoAlCarrito} />
+                        </Route>
+                        <Route path="/tienda">
+
+                            <Tienda
+                                productos={productos}
+                                agregarProductoAlCarrito={agregarProductoAlCarrito}
+                            />
+                        </Route>
+                        <Route path="/checkout">
+                            <Checkout carrito={carrito} removeItemFromCart={removeItemFromCart} clearCart={clearCart} />
+                        </Route>
+                        <Route component={Error404} />
+                    </Switch>
+                </main>
+                {hide ?
+                    null : <aside>
+                        <Carrito carrito={carrito} hideCart={hideCart} />
+                    </aside>}
+            </Container>
+        </BrowserRouter>
     );
 }
 
