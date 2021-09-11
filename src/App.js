@@ -7,6 +7,7 @@ import Carrito from './componentes/Carrito';
 import Headphones from './componentes/Headphones';
 import Laptops from './componentes/Laptops';
 import Checkout from './componentes/Checkout';
+import Login from './componentes/Login';
 
 const App = () => {
 
@@ -99,6 +100,7 @@ const App = () => {
                     <NavLink to="/headphones" onClick={unHideCart}> Headphones</NavLink>
                     <NavLink to="/laptops" onClick={unHideCart}> Laptops</NavLink>
                     <NavLink to="/checkout" onClick={hideCart}> <img src={process.env.PUBLIC_URL + `/Assets/shopping-cart.png`} width='30' /></NavLink>
+                    <NavLink to="/login" onClick={hideCart}> <img src={process.env.PUBLIC_URL + `/Assets/login.png`} width='30' /></NavLink>
                 </Menu>
                 <main>
                     <Switch>
@@ -116,6 +118,8 @@ const App = () => {
                         <Route path="/checkout">
                             <Checkout carrito={carrito} removeItemFromCart={removeItemFromCart} clearCart={clearCart} />
                         </Route>
+                        <Route path="/login" exact={true} component={Login} />
+
                         
                     </Switch>
                 </main>
