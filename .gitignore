@@ -12,7 +12,7 @@
 /build
 
 # eslintcache
-/ .eslintcache
+/.eslintcache
 
 # misc
 .DS_Store
