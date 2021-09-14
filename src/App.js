@@ -8,6 +8,7 @@ import Headphones from './componentes/Headphones';
 import Laptops from './componentes/Laptops';
 import Checkout from './componentes/Checkout';
 import Login from './componentes/Login';
+import Register from './componentes/Register';
 
 const App = () => {
 
@@ -93,7 +94,7 @@ const App = () => {
     return (
 
         <BrowserRouter>
-            <Container>
+            
                 <Menu >
                     <NavLink to="/" onClick={hideCart}>Home</NavLink>
                     <NavLink to="/mobiles" onClick={unHideCart}>Mobiles</NavLink>
@@ -102,6 +103,7 @@ const App = () => {
                     <NavLink to="/checkout" onClick={hideCart}> <img src={process.env.PUBLIC_URL + `/Assets/shopping-cart.png`} width='30' /></NavLink>
                     <NavLink to="/login" onClick={hideCart}> <img src={process.env.PUBLIC_URL + `/Assets/login.png`} width='30' /></NavLink>
                 </Menu>
+                <Container>
                 <main>
                     <Switch>
                         <Route path="/" exact={true} component={Home} />
@@ -119,6 +121,7 @@ const App = () => {
                             <Checkout carrito={carrito} removeItemFromCart={removeItemFromCart} clearCart={clearCart} />
                         </Route>
                         <Route path="/login" exact={true} component={Login} />
+                        <Route path="/register" exact={true} component={Register} />
 
                         
                     </Switch>
@@ -134,7 +137,7 @@ const App = () => {
 
 const Container = styled.div`
     max-width: 100%;
-    padding: 40px;
+    padding: 20px 40px;
     width: 100%;
     display: grid;
     gap: 20px;
@@ -147,7 +150,7 @@ const Container = styled.div`
 const Menu = styled.nav`
     width: 100%;
     text-align: center;
-    background: #092c4c;
+    background:#7FFFD4;
     grid-column: span 2;
     border-radius: 3px;
  
