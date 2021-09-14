@@ -4,7 +4,7 @@ import './loginregister.css';
 
 const Login = () => {
 
-	//State para iniciar sesion
+	//State para el login
 
 	const [usuario, guardarUsuario] = useState ( {
 
