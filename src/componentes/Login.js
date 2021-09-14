@@ -12,7 +12,7 @@ const Login = () => {
 		password: ''
 	});
 
-	//extraer usuario
+	//extraer user
 
 	const {email, password}= usuario;
 	const onChange = e =>{
