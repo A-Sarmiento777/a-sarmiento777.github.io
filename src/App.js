@@ -1,39 +1,54 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { NavLink, Switch, Route, BrowserRouter } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import Home from './componentes/Home';
 import Mobiles from './componentes/Mobiles';
-import Carrito from './componentes/Carrito';
 import Headphones from './componentes/Headphones';
 import Laptops from './componentes/Laptops';
 import Checkout from './componentes/Checkout';
+import Favorite from './componentes/Favorite';
 import Login from './componentes/Login';
 import Register from './componentes/Register';
-
+import Menubar from './componentes/Menu';    
+import Footer from './componentes/Footer';
 const App = () => {
 
-    const [hide, setHide] = useState(false)
-    const productos = [
-        { id: 1, nombre: 'Producto 1' },
-        { id: 2, nombre: 'Producto 2' },
-        { id: 3, nombre: 'Producto 3' },
-        { id: 4, nombre: 'Producto 4' }
-    ];
+    const [count, setCount] = useState(0);
+    const [carrito, cambiarCarrito] = useState([]);
+    const [carritoFav, cambiarCarritoFav] = useState([]);
+    const [countFav, setCountFav] = useState(0);
 
-    const hideCart = () => {
-        setHide(true)
+    //update count productos
+    useEffect(() => {
+        contar(carrito);
+        contarFav(carritoFav);
+    }, [carrito,carritoFav])
+
+    //to acumm cantidad of product inside carrito 
+    const contar = (data) => {  
+        setCount( 
+            data.reduce(
+                (prevValue, currentValue) => prevValue + currentValue.cantidad,
+                0
+            )
+        )    
     }
-    const unHideCart = () => {
-        setHide(false)
-    }
+
+    const contarFav = (data) => {  
+        setCountFav( 
+            data.reduce(
+                (prevValue, currentValue) => prevValue + currentValue.cantidad,
+                0
+            )
+        )    
+    }    
+
     const clearCart = () => {
         cambiarCarrito([])
     }
-    const [carrito, cambiarCarrito] = useState([]);
-    // [
-    //     {id: 1s, nombre: 'Producto 1ss', cantidadj: 1},
-    //     {id: 2, nombre: 'Producto 2', cantidad: 2}
-    // ]
+
+    const clearCartFav = () => {
+        cambiarCarritoFav([])
+    }    
 
     const agregarProductoAlCarrito = (idProductoAAgregar, nombre, price, type) => {
         // Si el carrito no tiene elementos entonces agregamos uno.
@@ -80,90 +95,106 @@ const App = () => {
                     }
                 );
             }
-
             // Por ultimo actualizamos el carrito.
             cambiarCarrito(nuevoCarrito);
         }
     }
+
+    const agregarProductoAlCarritoFav = (idProductoAAgregar, nombre, price, type) => {
+        // Si el carrito no tiene elementos entonces agregamos uno.
+        if (carritoFav.length === 0) {
+            cambiarCarritoFav([{ id: idProductoAAgregar, nombre: nombre, price: price, type: type, cantidad: 1 }]);
+        } else {
+            // De otra foma tenemos que revisar que el carrito no tenga ya el producto que queremos agregar.
+            // Si ya lo tiene entonces queremos actualizar su valor.
+            // Si no tiene el producto entonces lo agregamos.
+
+            // Para poder editar el arreglo tenemos que clonarlo.
+            const nuevoCarritoFav = [...carritoFav];
+
+            // Comprobamos si el carrito ya tiene el ID del producto a agregar.
+            const yaEstaEnCarritoFav = nuevoCarritoFav.filter((productoDeCarritoFav) => {
+                return productoDeCarritoFav.id === idProductoAAgregar
+            }).length > 0;
+
+            // Si ya tiene el producto entonces lo tenemos que actualizar.
+            if (yaEstaEnCarritoFav) {
+                // Para ello tenemos que buscarlo, obtener su posicion en el arreglo.
+                // Y en base a su posicion ya actualizamos el valor.
+                nuevoCarritoFav.forEach((productoDeCarritoFav, index) => {
+                    if (productoDeCarritoFav.id === idProductoAAgregar) {
+                        const cantidad = nuevoCarritoFav[index].cantidad;
+                        nuevoCarritoFav[index] = {
+                            id: idProductoAAgregar,
+                            nombre: nombre,
+                            price: price * (cantidad + 1),
+                            type: type,
+                            cantidad: cantidad + 1
+                        }
+                    }
+                });
+                // De otra forma entonces agregamos el producto al arreglo.
+            } else {
+                nuevoCarritoFav.push(
+                    {
+                        id: idProductoAAgregar,
+                        nombre: nombre,
+                        price: price,
+                        type: type,
+                        cantidad: 1
+                    }
+                );
+            }
+            // Por ultimo actualizamos el carrito.
+            cambiarCarritoFav(nuevoCarritoFav);
+        }
+    }    
 
     const removeItemFromCart = (id) => {
         let data = carrito && carrito.filter(item => item.id !== id)
         cambiarCarrito(data)
     }
 
-    return (
+    const removeItemFromCartFav = (id) => {
+        let data = carritoFav && carritoFav.filter(item => item.id !== id)
+        cambiarCarritoFav(data)
+    }
 
-        <BrowserRouter>
-            
-                <Menu >
-                    <NavLink to="/" onClick={hideCart}>Home</NavLink>
-                    <NavLink to="/mobiles" onClick={unHideCart}>Mobiles</NavLink>
-                    <NavLink to="/headphones" onClick={unHideCart}> Headphones</NavLink>
-                    <NavLink to="/laptops" onClick={unHideCart}> Laptops</NavLink>
-                    <NavLink to="/checkout" onClick={hideCart}> <img src={process.env.PUBLIC_URL + `/Assets/shopping-cart.png`} width='30' /></NavLink>
-                    <NavLink to="/login" onClick={hideCart}> <img src={process.env.PUBLIC_URL + `/Assets/login.png`} width='30' /></NavLink>
-                </Menu>
-                <Container>
-                <main>
+    return (
+        <>
+            <BrowserRouter>        
+                <Menubar count={count} countFav={countFav} />
+                <div className="mx-auto text-center" > 
+                    <img src={process.env.PUBLIC_URL + `/Assets/banner.png`} alt="logo" className="img-fluid"/>
+                </div> 
+                <div className="container mb-5" style={{ height:"100%" }}>
                     <Switch>
                         <Route path="/" exact={true} component={Home} />
                         <Route path="/mobiles">
-                            <Mobiles agregarProductoAlCarrito={agregarProductoAlCarrito} />
+                            <Mobiles agregarProductoAlCarrito={agregarProductoAlCarrito} agregarProductoAlCarritoFav={agregarProductoAlCarritoFav} />
                         </Route>
                         <Route path="/headphones">
-                            <Headphones agregarProductoAlCarrito={agregarProductoAlCarrito} />
+                            <Headphones agregarProductoAlCarrito={agregarProductoAlCarrito} agregarProductoAlCarritoFav={agregarProductoAlCarritoFav}/>
                         </Route>
                         <Route path="/laptops">
-                            <Laptops agregarProductoAlCarrito={agregarProductoAlCarrito} />
-                        </Route>
-                    
+                            <Laptops agregarProductoAlCarrito={agregarProductoAlCarrito} agregarProductoAlCarritoFav={agregarProductoAlCarritoFav} />
+                        </Route>                
                         <Route path="/checkout">
-                            <Checkout carrito={carrito} removeItemFromCart={removeItemFromCart} clearCart={clearCart} />
+                            <Checkout carrito={carrito} carritoFav={carritoFav} removeItemFromCart={removeItemFromCart} removeItemFromCartFav={removeItemFromCartFav} clearCart={clearCart} clearCartFav={clearCartFav} />
                         </Route>
+                        <Route path="/favorite">
+                            <Favorite carrito={carrito} carritoFav={carritoFav} removeItemFromCart={removeItemFromCart} removeItemFromCartFav={removeItemFromCartFav} clearCart={clearCart} clearCartFav={clearCartFav} />
+                        </Route>                        
                         <Route path="/login" exact={true} component={Login} />
                         <Route path="/register" exact={true} component={Register} />
-
-                        
-                    </Switch>
-                </main>
-                {hide ?
-                    null : <aside>
-                        <Carrito carrito={carrito} hideCart={hideCart} />
-                    </aside>}
-            </Container>
-        </BrowserRouter>
+                    </Switch>               
+                </div>
+            </BrowserRouter>
+            <div style={{ position:"fixed", left:"0", bottom:"0", right:"0", height: "auto" }}>
+                <Footer  />
+            </div>
+        </>
     );
 }
-
-const Container = styled.div`
-    max-width: 100%;
-    padding: 20px 40px;
-    width: 100%;
-    display: grid;
-    gap: 20px;
-    grid-template-columns: 2fr 1fr;
-    background: #fff;   
-    border-radius: 10px;
-    box-shadow: 0px 0px 5px rgba(129, 129, 129, 0.1);
-`;
-
-const Menu = styled.nav`
-    width: 100%;
-    text-align: center;
-    background:#7FFFD4;
-    grid-column: span 2;
-    border-radius: 3px;
- 
-    a {
-        color: #fff;
-        display: inline-block;
-        padding: 15px 60px;
-    }
- 
-    a:hover {
-        background: #1d85e8;
-        text-decoration: none;
-    }
-`;
 
 export default App;
