@@ -8,6 +8,9 @@
 # backend
 /backend
 
+#db
+/db
+
 # testing
 /coverage
 
