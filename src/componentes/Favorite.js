@@ -1,13 +1,13 @@
 import React from 'react';
 
-const Checkout = ({ carrito, removeItemFromCart, clearCart }) => {
+const Favorite = ({ carritoFav, removeItemFromCartFav, clearCartFav }) => {
 
-    let amount = carrito?.map(a => a.price)
+    let amount = carritoFav?.map(a => a.price)
     let totalAmount = amount?.reduce((a, b) => a + b, 0)
 
     return (
         <div className="card p-4 mt-5 pt-4 mb-5 rounded" style={{minWidth:"460px"}}>
-            {carrito.length ? <table style={{ width: '100%' }}>
+            {carritoFav.length ? <table style={{ width: '100%' }}>
                 <thead>
                     <tr>
                         <td style={{ fontWeight: 'bold' }}>Product</td>
@@ -18,7 +18,7 @@ const Checkout = ({ carrito, removeItemFromCart, clearCart }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {carrito?.map( (producto, index) => {
+                    {carritoFav?.map( (producto, index) => {
                         return (
                             <>
                                 <tr key="index">
@@ -26,15 +26,15 @@ const Checkout = ({ carrito, removeItemFromCart, clearCart }) => {
                                     <td>{producto.nombre}</td>
                                     <td>{producto.cantidad}</td>
                                     <td>{producto.price}</td>
-                                    <td onClick={() => removeItemFromCart(producto.id)} style={{ color: 'red' }}>Remove</td>
+                                    <td onClick={() => removeItemFromCartFav(producto.id)} style={{ color: 'red' }}>Remove</td>
                                 </tr>
                             </>
                         )
                     })}
                 </tbody>
-            </table> : <h4>Nothing in cart! Please Add some items</h4>}
+            </table> : <h4>Nothing in Fav! Please Add some items</h4>}
 
-            {carrito.length ? 
+            {carritoFav.length ? 
                 <div  className="mx-auto">
                 <div>
                 Price: {totalAmount - ((totalAmount * 25) / 100)+ ' kr'}
@@ -47,7 +47,7 @@ const Checkout = ({ carrito, removeItemFromCart, clearCart }) => {
                 <div className="text-center mx-auto">
                     <button className="p-1 rounded" style={{ backgroundColor: 'black', color: 'white' }} onClick={() => {
                         alert('Thanks for the Shopping')
-                        clearCart()
+                        clearCartFav()
                     }}>Checkout</button>
                 </div>
                 </div>
@@ -58,4 +58,4 @@ const Checkout = ({ carrito, removeItemFromCart, clearCart }) => {
 }
 
 
-export default Checkout;
+export default Favorite;
