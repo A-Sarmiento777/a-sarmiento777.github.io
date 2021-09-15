@@ -11,6 +11,11 @@
 # .eslintcache
 /.eslintcache
 
+#backend
+/backend
+
+#db
+/db
 # production
 /build
 
