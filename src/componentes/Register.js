@@ -40,15 +40,16 @@ const Register = () => {
 		//Pasarlo al action
 	}
 	return (
-	<div className = "form-usuario" >
-		<div className = "contenedor-form sombra dark">
-			<h1>Register</h1>
+	<div className = "container d-flex justify-content-center mt-5"  >
+		<div className = "card col-4 shadow-lg p-3 mb-5 bg-white rounded text-center" style={{minWidth:"300px"}}>
+			<h1 className="pb-3">Register</h1>
 			<form
             onSubmit={onSubmit}
             >
-                <div className ="campo-form">
-					<label htmlFor="name">User name</label>
+                <div className ="form-group">
+					<label className ="col-12 text-left pl-1" htmlFor="name">User name</label>
 					<input
+					className="form-control"
 					type="text"
 					id="name"
 					name="name"
@@ -57,9 +58,10 @@ const Register = () => {
 					onChange={onChange}/>
 				</div>
 
-				<div className ="campo-form">
-					<label htmlFor="email">Email</label>
+				<div lassName ="form-group">
+					<label className ="col-12 text-left pl-1" htmlFor="email">Email</label>
 					<input
+					className="form-control"
 					type="email"
 					id="email"
 					name="email"
@@ -68,9 +70,10 @@ const Register = () => {
 					onChange={onChange}/>
 				</div>
 
-				<div className ="campo-form">
-					<label htmlFor="password">Password</label>
+				<div lassName ="form-group">
+					<label className ="col-12 text-left pl-1" htmlFor="password">Password</label>
 					<input
+					className="form-control"
 					type="password"
 					id="password"
 					name="password"
@@ -79,9 +82,10 @@ const Register = () => {
 					onChange={onChange}/>
 				</div>
 
-                <div className ="campo-form">
-					<label htmlFor="confirm">Repeate password</label>
+                <div lassName ="form-group">
+					<label className ="col-12 text-left pl-1" htmlFor="confirm">Repeate password</label>
 					<input
+					className="form-control"
 					type="password"
 					id="confirm"
 					name="confirm"
@@ -90,8 +94,8 @@ const Register = () => {
 					onChange={onChange}/>
 				</div>
 
-				<div className ="campo-form">
-					<input type= "submit" className= "btn btn-primario btn block"
+				<div  className ="form-group">
+					<input type= "submit" className= "btn btn-primary inline col-12 py-2"
 					value ="Register" />
 				</div>
 			</form>
