@@ -1,0 +1,1 @@
+This file only exist to keep the db folder in git

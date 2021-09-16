@@ -15,7 +15,7 @@ const Home = () => {
 						<img src={process.env.PUBLIC_URL + `/Assets/home-list/HP Pavilion 17.jpg`} alt="hello" className="card-img-top" />
 						<div className="card-body">
 							<h3 className="card-title">HP Pavilion 17</h3>
-							<p className="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, voluptas.</p>
+							
 						</div>
 					</div>
 				</div>
@@ -24,7 +24,7 @@ const Home = () => {
 						<img src={process.env.PUBLIC_URL + `/Assets/home-list/Doro 8080.jpg`} alt="hello" className="card-img-top" />
 						<div className="card-body">
 							<h3 className="card-title">Doro 8080</h3>
-							<p className="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, voluptas.</p>
+							
 						</div>
 					</div>
 				</div>
@@ -33,7 +33,7 @@ const Home = () => {
 						<img src={process.env.PUBLIC_URL + `/Assets/home-list/Acer Swift 3.jpg`} alt="hello" className="card-img-top" />
 						<div className="card-body">
 							<h3 className="card-title">Acer Swift 3</h3>
-							<p className="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, voluptas.</p>
+							
 						</div>
 					</div>
 				</div>
@@ -42,7 +42,7 @@ const Home = () => {
 						<img src={process.env.PUBLIC_URL + `/Assets/home-list/IPhone SE.jpg`} alt="hello" className="card-img-top" />
 						<div className="card-body">
 							<h3 className="card-title">IPhone SE</h3>
-							<p className="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, voluptas.</p>
+							
 						</div>
 					</div>
 				</div>
@@ -51,7 +51,6 @@ const Home = () => {
 						<img src={process.env.PUBLIC_URL + `/Assets/home-list/MSI GF63.jpg`} alt="hello" className="card-img-top" />
 						<div className="card-body">
 							<h3 className="card-title">MSI GF63</h3>
-							<p className="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, voluptas.</p>
 						</div>
 					</div>
 				</div>
@@ -60,7 +59,7 @@ const Home = () => {
 						<img src={process.env.PUBLIC_URL + `/Assets/home-list/Huawei P40 Lite.jpg`} alt="hello" className="card-img-top" />
 						<div className="card-body">
 							<h3 className="card-title">Huawei P40 Lite</h3>
-							<p className="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, voluptas.</p>
+							
 						</div>
 					</div>
 				</div>
@@ -69,7 +68,7 @@ const Home = () => {
 						<img src={process.env.PUBLIC_URL + `/Assets/home-list/Apple Airpods 2019.jpg`} alt="hello" className="card-img-top" />
 						<div className="card-body">
 							<h3 className="card-title">Apple Airpods</h3>
-							<p className="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, voluptas.</p>
+							
 						</div>
 					</div>
 				</div>
@@ -78,7 +77,7 @@ const Home = () => {
 						<img src={process.env.PUBLIC_URL + `/Assets/home-list/Apple AirPods Max.jpg`} alt="hello" className="card-img-top" />
 						<div className="card-body">
 							<h3 className="card-title">Apple Airpods Max</h3>
-							<p className="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, voluptas.</p>
+							
 						</div>
 					</div>
 				</div>
