@@ -11,6 +11,14 @@
 # testing
 /coverage
 
+#db
+/db
+
+#db
+/.db
+
+#db
+/db
 # backend
 /backend
 
