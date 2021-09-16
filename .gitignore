@@ -15,7 +15,9 @@
 /backend
 
 # db
-/db
+/db/*.db
+
+
 
 # .eslintcache
 /.eslintcache
