@@ -51,7 +51,6 @@ const Home = () => {
 						<img src={process.env.PUBLIC_URL + `/Assets/home-list/MSI GF63.jpg`} alt="hello" className="card-img-top" />
 						<div className="card-body">
 							<h3 className="card-title">MSI GF63</h3>
-							<p className="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, voluptas.</p>
 						</div>
 					</div>
 				</div>

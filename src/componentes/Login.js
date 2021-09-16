@@ -35,9 +35,9 @@ const Login = (props) => {
 		//Pasarlo al action
 	}
 
-	function login(data) {
-		try {
-			fetch("http://localhost:4000/api/login", {
+	async function login(data) {
+		
+			let result = await(await fetch("http://localhost:4000/api/login", {
 
 				// Adding method type
 				method: "POST",
@@ -49,16 +49,10 @@ const Login = (props) => {
 				headers: {
 					"Content-type": "application/json; charset=UTF-8"
 				}
-			})
-
-				// Converting to JSON
-				.then(response => response.status == 200 ? props.history.push('/') : alert('Error While Logging In'))
-
-			// Displaying results to console
-			//.then(json => console.log('json', json));
-		} catch (error) {
-			console.log(error)
-		}
+			})).json()
+			console.log(result);
+		
+		
 	}
 	return (
 	<div className = "container d-flex justify-content-center mt-5" >
