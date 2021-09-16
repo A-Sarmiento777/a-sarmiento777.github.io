@@ -25,7 +25,7 @@ const Menu = ({count, countFav}) => {
                 </div>
                 <div className="mr-auto order-0">
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
-                        <span className="navbar-toggler-icon"></span>
+                        <span className="navbar-toggler-icon bg-dark"></span>
                     </button>
                 </div>
                 <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
