@@ -190,7 +190,7 @@ const App = () => {
                     </Switch>               
                 </div>
             </BrowserRouter>
-            <div style={{ position:"fixed", left:"0", bottom:"0", right:"0", height: "auto" }}>
+            <div style={{ position:"relative", left:"0", bottom:"0", right:"0", height: "auto" }}>
                 <Footer  />
             </div>
         </>
