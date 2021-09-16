@@ -5,11 +5,23 @@
 /.pnp
 .pnp.js
 
+# backend
+/backend
+
 # testing
 /coverage
 
+# backend
+/backend
+
+# db
+/db
+
 # .eslintcache
 /.eslintcache
+
+#backend
+/backend
 
 # production
 /build

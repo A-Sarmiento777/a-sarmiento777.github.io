@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import './loginregister.css';
 
-const Login = () => {
+const Login = (props) => {
 
 	//State para el login
 
@@ -28,10 +28,31 @@ const Login = () => {
 	const onSubmit = e =>
 	{
 		e.preventDefault ();
-
+		console.log(usuario)
+		login(usuario)
 		//Validar que no haya campos vacios
 
 		//Pasarlo al action
+	}
+
+	async function login(data) {
+		
+			let result = await(await fetch("http://localhost:4000/api/login", {
+
+				// Adding method type
+				method: "POST",
+
+				// Adding body or contents to send
+				body: JSON.stringify(data),
+
+				// Adding headers to the request
+				headers: {
+					"Content-type": "application/json; charset=UTF-8"
+				}
+			})).json()
+			console.log(result);
+		
+		
 	}
 	return (
 	<div className = "container d-flex justify-content-center mt-5" >

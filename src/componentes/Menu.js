@@ -3,9 +3,11 @@ import { NavLink} from 'react-router-dom';
 
 const Menu = ({count, countFav}) => {
 	return (
-            <nav className="navbar navbar-expand-md navbar-dark bg-primary" style={{minWidth:"400px"}}>
+            <nav className="navbar navbar-expand-md navbar-dark bg-light" style={{minWidth:"400px"}}>
                 <div className="container">
                 <div className="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+
+                    <h2 className="mr-5">VenCub</h2>
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item active">
                             <NavLink className="nav-link active" style={{color:"black"}} to="/" > Home <span className="sr-only">(current)</span> </NavLink>
@@ -23,7 +25,7 @@ const Menu = ({count, countFav}) => {
                 </div>
                 <div className="mr-auto order-0">
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
-                        <span className="navbar-toggler-icon"></span>
+                        <span className="navbar-toggler-icon bg-dark"></span>
                     </button>
                 </div>
                 <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
