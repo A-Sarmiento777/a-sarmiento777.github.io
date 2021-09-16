@@ -8,17 +8,11 @@
 # backend
 /backend
 
-#db
-/db
-
 # testing
 /coverage
 
 # backend
 /backend
-
-#db
-/db 
 
 # .eslintcache
 /.eslintcache
@@ -26,8 +20,6 @@
 #backend
 /backend
 
-#db
-/db
 # production
 /build
 
