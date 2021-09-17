@@ -12,7 +12,6 @@ const Favorite = ({ carritoFav, removeItemFromCartFav, clearCartFav }) => {
                     <tr>
                         <td style={{ fontWeight: 'bold' }}>Product</td>
                         <td style={{ fontWeight: 'bold' }}>Title</td>
-                        <td style={{ fontWeight: 'bold' }}>Quantity</td>
                         <td style={{ fontWeight: 'bold' }}>Price</td>
                         <td style={{ fontWeight: 'bold' }}>Remove</td>
                     </tr>
@@ -22,9 +21,8 @@ const Favorite = ({ carritoFav, removeItemFromCartFav, clearCartFav }) => {
                         return (
                             <>
                                 <tr key="index">
-                                    <td><img src={process.env.PUBLIC_URL + `/Assets/${producto.type}/${producto.nombre}.jpg`} width='100' alt="logos" className="img-fluid py-2" /></td>
-                                    <td>{producto.nombre}</td>
-                                    <td>{producto.cantidad}</td>
+                                    <td><img src={process.env.PUBLIC_URL + `/Assets/${producto.type}/${producto.name}.jpg`} width='100' alt="logos" className="img-fluid py-2" /></td>
+                                    <td>{producto.name}</td>
                                     <td>{producto.price}</td>
                                     <td onClick={() => removeItemFromCartFav(producto.id)} style={{ color: 'red' }}>Remove</td>
                                 </tr>
