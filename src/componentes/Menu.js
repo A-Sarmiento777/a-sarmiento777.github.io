@@ -1,25 +1,26 @@
 import React from 'react';
-import { NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
-const Menu = ({count, countFav}) => {
-	return (
-            <nav className="navbar navbar-expand-md navbar-dark bg-light" style={{minWidth:"400px"}}>
-                <div className="container">
+const Menu = ({ count, countFav, handleLogout, isLoggedIn, user }) => {
+
+    return (
+        <nav className="navbar navbar-expand-md navbar-dark bg-light" style={{ minWidth: "400px" }}>
+            <div className="container">
                 <div className="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
 
                     <h2 className="mr-5">VenCub</h2>
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item active">
-                            <NavLink className="nav-link active" style={{color:"black"}} to="/" > Home <span className="sr-only">(current)</span> </NavLink>
+                            <NavLink className="nav-link active" style={{ color: "black" }} to="/" > Home <span className="sr-only">(current)</span> </NavLink>
                         </li>
                         <li className="nav-item active">
-                            <NavLink className="nav-link" style={{color:"black"}} to="/mobiles" >Mobiles</NavLink>
+                            <NavLink className="nav-link" style={{ color: "black" }} to="/mobiles" >Mobiles</NavLink>
                         </li>
                         <li className="nav-item active">
-                            <NavLink className="nav-link" style={{color:"black"}}  to="/headphones" > Headphones</NavLink>
+                            <NavLink className="nav-link" style={{ color: "black" }} to="/headphones" > Headphones</NavLink>
                         </li>
                         <li className="nav-item active">
-                            <NavLink className="nav-link" style={{color:"black"}}  to="/laptops" > Laptops</NavLink>
+                            <NavLink className="nav-link" style={{ color: "black" }} to="/laptops" > Laptops</NavLink>
                         </li>
                     </ul>
                 </div>
@@ -31,32 +32,35 @@ const Menu = ({count, countFav}) => {
                 <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item active">
-                            <NavLink className="nav-link d-flex"  to="/favorite"> 
-                                <div className="mt-auto" style={{color:"black"}}> 
-                                    {  countFav } 
+                            <NavLink className="nav-link d-flex" to="/favorite">
+                                <div className="mt-auto" style={{ color: "black" }}>
+                                    {countFav}
                                 </div>
-                                <img src={process.env.PUBLIC_URL + `/Assets/fav.png`} width='30' alt="logo"/> 
-                            </NavLink>
-                        </li>                        
-                        <li className="nav-item active">
-                            <NavLink className="nav-link d-flex"  to="/checkout"> 
-                                <div className="mt-auto" style={{color:"black"}}> 
-                                    {  count } 
-                                </div>
-                                <img src={process.env.PUBLIC_URL + `/Assets/shopping-cart.png`} width='30' alt="logo"/> 
+                                <img src={process.env.PUBLIC_URL + `/Assets/fav.png`} width='30' alt="logo" />
                             </NavLink>
                         </li>
                         <li className="nav-item active">
-                            <NavLink className="nav-link" to="/login"> 
-                                <img src={process.env.PUBLIC_URL + `/Assets/login.png`} width='30' alt="logo" /> 
+                            <NavLink className="nav-link d-flex" to="/checkout">
+                                <div className="mt-auto" style={{ color: "black" }}>
+                                    {count}
+                                </div>
+                                <img src={process.env.PUBLIC_URL + `/Assets/shopping-cart.png`} width='30' alt="logo" />
                             </NavLink>
-                        </li> 
+                        </li>
+                        <li className="nav-item active"> 
+                            {isLoggedIn === true ?
+                                <button onClick={handleLogout}>Log Out</button> :
+                                <NavLink className="nav-link" to="/login">
+                                    <img src={process.env.PUBLIC_URL + `/Assets/login.png`} width='30' alt="logo" />
+                                </NavLink>
+                            }
+                        </li>
                     </ul>
                 </div>
-                </div>
-            </nav>       
+            </div>
+        </nav>
 
-	);
+    );
 }
 
 export default Menu;

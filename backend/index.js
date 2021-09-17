@@ -7,7 +7,7 @@ const { response } = require('express');
 var bodyParser = require('body-parser')
 // create application/json parser
 var jsonParser = bodyParser.json()
- 
+
 // create application/x-www-form-urlencoded parser
 var urlencodedParser = bodyParser.urlencoded({ extended: true })
 
@@ -42,49 +42,156 @@ app.get('/api/mobiles', (req, res) => {
   res.json(result);
 });
 app.get('/api/laptops', (req, res) => {
-    // create a db query as a prepared statement
-    let stmt = db.prepare(`
+  // create a db query as a prepared statement
+  let stmt = db.prepare(`
     SELECT *
     FROM laptops
     `);
-    // run the query and return all the data
-    let result = stmt.all();
-    // send the result to the client as json
-    res.json(result);
-  });
-  app.get('/api/headphones', (req, res) => {
-    // create a db query as a prepared statement
-    let stmt = db.prepare(`
+  // run the query and return all the data
+  let result = stmt.all();
+  // send the result to the client as json
+  res.json(result);
+});
+app.get('/api/headphones', (req, res) => {
+  // create a db query as a prepared statement
+  let stmt = db.prepare(`
     SELECT *
     FROM headphones
     `);
-    // run the query and return all the data
-    let result = stmt.all();
-    console.log(result)
-    
+  // run the query and return all the data
+  let result = stmt.all();
+  console.log(result)
+
   // send the result to the client as json
   res.json(result);
+});
+
+app.get('/api/cart/:email', (req, res) => {
+  // create a db query as a prepared statement
+  let stmt = db.prepare(`
+  SELECT *
+  FROM cart WHERE email = :email
+  `);
+  // run the query and return all the data
+ // res.json(stmt.run({ email: req.params.id }));
+ let result = stmt.all({ email: req.params.email });
+ res.json(result);
+});
+app.get('/api/favourites/:email', (req, res) => {
+  // create a db query as a prepared statement
+  let stmt = db.prepare(`
+  SELECT *
+  FROM favourites WHERE email = :email
+  `);
+  // run the query and return all the data
+  let result = stmt.all({ email: req.params.email });
+  console.log(result)
+
+  // send the result to the client as json
+  res.json(result);
+});
+
+app.put('/api/updateFavourites', urlencodedParser, (req, res) => {
+  let query = db.prepare(`
+  UPDATE :type
+   SET 
+       favourite = :favourite
+ WHERE id = :id ;
+  `);
+
+
+  res.json(query.all(req.body).length ? true : false);
+});
+
+app.put('/api/updateQuantity/:id/:quantity', urlencodedParser, (req, res) => {
+  let query = db.prepare(`
+  UPDATE cart
+   SET 
+       quantity = :quantity
+ WHERE id = :id ;
+  `);
+
+
+  //res.json(query.all(req.body).length ? true : false);
+  res.json(query.run({ id: req.params.id, quantity: req.params.quantity }))
+});
+
+app.post('/api/addToCart', urlencodedParser, (req, res) => {
+  let query = db.prepare(`
+  INSERT INTO cart (
+    id,
+    name,
+    price,
+    type,
+    email,
+    quantity
+)
+VALUES (
+    :id,
+    :name,
+    :price,
+    :type,
+    :email,
+    :quantity
+);
+  `);
+
+  res.json(query.run(req.body));
+});
+app.post('/api/addToFavourites', urlencodedParser, (req, res) => {
+  let query = db.prepare(`
+  INSERT INTO favourites (
+    id,
+    name,
+    price,
+    type,
+    email
+)
+VALUES (
+    :id,
+    :name,
+    :price,
+    :type,
+    :email
+);
+  `);
+
+  res.json(query.run(req.body));
+});
+app.delete('/api/removeFromFavourites/:id', urlencodedParser, (req, res) => {
+  let stmt = db.prepare(`
+  DELETE FROM favourites
+      WHERE id = :id
+  `);
+
+  res.json(stmt.run({ id: req.params.id }));
+});
+app.delete('/api/removeFromCart/:id', urlencodedParser, (req, res) => {
+  let stmt = db.prepare(`
+  DELETE FROM cart
+      WHERE id = :id
+  `);
+
+  res.json(stmt.run({ id: req.params.id }));
 });
 
 app.post('/api/login', urlencodedParser, (req, res) => {
   let query = db.prepare(`
   SELECT
-       email,
-       password,
-       name
+       *
   FROM users WHERE email= :email AND password=:password ;
 
   `);
 
 
-  res.json(query.all(req.body).length?true:false);
+  res.json(query.all(req.body).length ? { data: req.body.email } : false);
 });
 
 app.post('/api/register', urlencodedParser, (req, res) => {
   console.log(req.body)
   var user = req.body;
 
-  if( user != undefined ){
+  if (user != undefined) {
 
   }
 
@@ -98,9 +205,9 @@ VALUES (
   '${user.password}',
   '${user.name}'
 );`)
-  
+
   res.json(query.run(req.body));
- // console.log(result)
+  // console.log(result)
 });
 
 app.get('/api/logout', (req, res) => {
