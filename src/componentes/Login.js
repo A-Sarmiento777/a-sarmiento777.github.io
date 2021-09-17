@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import './loginregister.css';
 
-const Login = (props) => {
+const Login = ({signIn, saveUser}) => {
 
 	//State para el login
-
+const history = useHistory()
 	const [usuario, guardarUsuario] = useState ( {
 
 		email: '',
@@ -50,7 +50,14 @@ const Login = (props) => {
 					"Content-type": "application/json; charset=UTF-8"
 				}
 			})).json()
-			console.log(result);
+			console.log(result.data);
+			if(result.data) {
+				signIn()
+				saveUser(result.data)
+				localStorage.setItem("token", 'randomTokenForAuth$%$%^@67578$#%$#55') // Random Token for Authentication
+			localStorage.setItem("email", result?.data)
+			history.push('/')
+			}
 		
 		
 	}
