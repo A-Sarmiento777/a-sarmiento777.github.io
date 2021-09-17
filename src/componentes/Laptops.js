@@ -40,7 +40,7 @@ const Laptops = ({agregarProductoAlCarrito, agregarProductoAlCarritoFav}) => {
 						<button className="bg-light border-0" onClick={() => agregarProductoAlCarritoFav(laptop?.id + 'm', laptop?.name, laptop?.price, 'laptops')}>
 						<img src={process.env.PUBLIC_URL + `/Assets/heart.png`} width='20' alt="logo"/>
 						</button>
-							<button className="bg-warning px-1 rounded ml-2"  onClick={() => agregarProductoAlCarrito(laptop?.id + 'l', laptop?.name, laptop?.price, 'laptops')}>Add</button>
+							<button className="bg-warning px-1 rounded ml-2"  onClick={() => agregarProductoAlCarrito(laptop?.id + 'l', laptop?.name, laptop?.price, 'laptops', 1)}>Add</button>
 						</div>
 					</div>
 				)

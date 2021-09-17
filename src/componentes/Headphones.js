@@ -42,7 +42,7 @@ const Headphones = ({agregarProductoAlCarrito,agregarProductoAlCarritoFav}) => {
 							<button className="bg-light border-0" onClick={() => agregarProductoAlCarritoFav(headphone?.id + 'm', headphone?.name, headphone?.price, 'headphones')}>
 							<img src={process.env.PUBLIC_URL + `/Assets/heart.png`} width='20' alt="logo"/>
 								</button>
-							<button className="bg-warning px-1 rounded ml-2" onClick={() => agregarProductoAlCarrito(headphone?.id + 'h', headphone?.name, headphone?.price, 'headphones')}>Add</button>
+							<button className="bg-warning px-1 rounded ml-2" onClick={() => agregarProductoAlCarrito(headphone?.id + 'h', headphone?.name, headphone?.price, 'headphones', 1)}>Add</button>
 						</div>
 					</div>
 				)
