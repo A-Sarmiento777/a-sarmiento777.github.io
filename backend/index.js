@@ -163,8 +163,22 @@ app.delete('/api/removeFromFavourites/:id', urlencodedParser, (req, res) => {
   DELETE FROM favourites
       WHERE id = :id
   `);
-
   res.json(stmt.run({ id: req.params.id }));
+});
+app.delete('/api/emptyFavourites/:email', urlencodedParser, (req, res) => {
+  let stmt = db.prepare(`
+  DELETE FROM favourites
+      WHERE email = :email
+  `);
+  res.json(stmt.run({ email: req.params.email }));
+});
+app.delete('/api/emptyCart/:email', urlencodedParser, (req, res) => {
+  let stmt = db.prepare(`
+  DELETE FROM cart
+      WHERE email = :email
+  `);
+
+  res.json(stmt.run({ email: req.params.email }));
 });
 app.delete('/api/removeFromCart/:id', urlencodedParser, (req, res) => {
   let stmt = db.prepare(`

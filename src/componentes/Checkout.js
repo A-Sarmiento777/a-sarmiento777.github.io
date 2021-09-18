@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { useHistory } from 'react-router';
 
-const Checkout = ({ carrito, removeItemFromCart, increment, decrement, clearCart, getCart, cart }) => {
+const Checkout = ({ removeItemFromCart, increment, decrement, clearCart, getCart, cart }) => {
 
-    
+    const history = useHistory()
+
 	
 	let amount = cart && cart?.length && cart.map(a => parseInt(a.price) * parseInt(a.quantity))
 	let totalAmount = amount && amount.length && amount?.reduce((a, b) => a + b, 0)
 	useEffect(() => {
 		getCart()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
 	
@@ -49,11 +52,11 @@ const Checkout = ({ carrito, removeItemFromCart, increment, decrement, clearCart
                 </div>
                 <div>
                 Incl moms: {totalAmount + ' kr'}
-                
+
                 </div>
                 <div className="text-center mx-auto">
                     <button className="p-1 rounded" style={{ backgroundColor: 'black', color: 'white' }} onClick={() => {
-                        alert('Thanks for the Shopping')
+                        history.push('/order')
                         clearCart()
                     }}>Checkout</button>
                 </div>

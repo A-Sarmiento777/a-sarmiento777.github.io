@@ -10,30 +10,19 @@ import Login from './componentes/Login';
 import Register from './componentes/Register';
 import Menubar from './componentes/Menu';
 import Footer from './componentes/Footer';
-const App = (props) => {
+import Order from './componentes/Order';
 
-    const [count, setCount] = useState(0);
+const App = () => {
     const [cart, setCart] = useState([])
     const [favourites, setFavourites] = useState([])
-    const [carrito, cambiarCarrito] = useState([]);
-    const [carritoFav, cambiarCarritoFav] = useState([]);
-    const [countFav, setCountFav] = useState(0);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [user, setUser] = useState()
     const history = useHistory()
     const [cartProducts, setCartProducts] = useState([])
     const [favProducts, setFavProducts] = useState([])
 
-    //update count productos
-    useEffect(() => {
-        contar(carrito);
-        contarFav(carritoFav);
-    }, [carrito, carritoFav])
-
     async function simpleFetch(url) {
-
         return await (await fetch(url)).json();
-
     }
 
     async function getCart() {
@@ -61,31 +50,15 @@ const App = (props) => {
         }
     }
 
-    //to acumm cantidad of product inside carrito 
-    const contar = (data) => {
-        setCount(
-            data.reduce(
-                (prevValue, currentValue) => prevValue + currentValue.cantidad,
-                0
-            )
-        )
-    }
-
-    const contarFav = (data) => {
-        setCountFav(
-            data.reduce(
-                (prevValue, currentValue) => prevValue + currentValue.cantidad,
-                0
-            )
-        )
-    }
-
     const clearCart = () => {
-        cambiarCarrito([])
+        setCart([])
+        setCartProducts([])
+        emptyCart(user)
     }
-
-    const clearCartFav = () => {
-        cambiarCarritoFav([])
+    const clearFav = () => {
+        setFavourites([])
+        setFavProducts([])
+        emptyFavourites(user)
     }
 
     const agregarProductoAlCarrito = (idProductoAAgregar, nombre, price, type, quantity) => {
@@ -106,53 +79,6 @@ const App = (props) => {
 
         if (data) {
             addToCart(data)
-        }
-        // Si el carrito no tiene elementos entonces agregamos uno.
-        if (carrito.length === 0) {
-            cambiarCarrito([{ id: idProductoAAgregar, nombre: nombre, price: price, type: type, cantidad: 1 }]);
-        } else {
-            // De otra foma tenemos que revisar que el carrito no tenga ya el producto que queremos agregar.
-            // Si ya lo tiene entonces queremos actualizar su valor.
-            // Si no tiene el producto entonces lo agregamos.
-
-            // Para poder editar el arreglo tenemos que clonarlo.
-            const nuevoCarrito = [...carrito];
-
-            // Comprobamos si el carrito ya tiene el ID del producto a agregar.
-            const yaEstaEnCarrito = nuevoCarrito.filter((productoDeCarrito) => {
-                return productoDeCarrito.id === idProductoAAgregar
-            }).length > 0;
-
-            // Si ya tiene el producto entonces lo tenemos que actualizar.
-            if (yaEstaEnCarrito) {
-                // Para ello tenemos que buscarlo, obtener su posicion en el arreglo.
-                // Y en base a su posicion ya actualizamos el valor.
-                nuevoCarrito.forEach((productoDeCarrito, index) => {
-                    if (productoDeCarrito.id === idProductoAAgregar) {
-                        const cantidad = nuevoCarrito[index].cantidad;
-                        nuevoCarrito[index] = {
-                            id: idProductoAAgregar,
-                            nombre: nombre,
-                            price: price * (cantidad + 1),
-                            type: type,
-                            cantidad: cantidad + 1
-                        }
-                    }
-                });
-                // De otra forma entonces agregamos el producto al arreglo.
-            } else {
-                nuevoCarrito.push(
-                    {
-                        id: idProductoAAgregar,
-                        nombre: nombre,
-                        price: price,
-                        type: type,
-                        cantidad: 1
-                    }
-                );
-            }
-            // Por ultimo actualizamos el carrito.
-            cambiarCarrito(nuevoCarrito);
         }
     }
     async function addToCart(data) {
@@ -216,53 +142,6 @@ const App = (props) => {
         if (data) {
             addToFavourites(data)
         }
-        // Si el carrito no tiene elementos entonces agregamos uno.
-        if (carritoFav.length === 0) {
-            cambiarCarritoFav([{ id: idProductoAAgregar, nombre: nombre, price: price, type: type, cantidad: 1 }]);
-        } else {
-            // De otra foma tenemos que revisar que el carrito no tenga ya el producto que queremos agregar.
-            // Si ya lo tiene entonces queremos actualizar su valor.
-            // Si no tiene el producto entonces lo agregamos.
-
-            // Para poder editar el arreglo tenemos que clonarlo.
-            const nuevoCarritoFav = [...carritoFav];
-
-            // Comprobamos si el carrito ya tiene el ID del producto a agregar.
-            const yaEstaEnCarritoFav = nuevoCarritoFav.filter((productoDeCarritoFav) => {
-                return productoDeCarritoFav.id === idProductoAAgregar
-            }).length > 0;
-
-            // Si ya tiene el producto entonces lo tenemos que actualizar.
-            if (yaEstaEnCarritoFav) {
-                // Para ello tenemos que buscarlo, obtener su posicion en el arreglo.
-                // Y en base a su posicion ya actualizamos el valor.
-                nuevoCarritoFav.forEach((productoDeCarritoFav, index) => {
-                    if (productoDeCarritoFav.id === idProductoAAgregar) {
-                        const cantidad = nuevoCarritoFav[index].cantidad;
-                        nuevoCarritoFav[index] = {
-                            id: idProductoAAgregar,
-                            nombre: nombre,
-                            price: price * (cantidad + 1),
-                            type: type,
-                            cantidad: cantidad + 1
-                        }
-                    }
-                });
-                // De otra forma entonces agregamos el producto al arreglo.
-            } else {
-                nuevoCarritoFav.push(
-                    {
-                        id: idProductoAAgregar,
-                        nombre: nombre,
-                        price: price,
-                        type: type,
-                        cantidad: 1
-                    }
-                );
-            }
-            // Por ultimo actualizamos el carrito.
-            cambiarCarritoFav(nuevoCarritoFav);
-        }
     }
 
     async function removeFromCart(id) {
@@ -280,6 +159,22 @@ const App = (props) => {
         console.log(result);
         if (result) {
             console.log('Item Removed')
+            getCart()
+        }
+    }
+    async function emptyCart(email) {
+
+        let result = await (await fetch("http://localhost:4000/api/emptyCart/" + email, {
+            // Adding method type
+            method: "DELETE",
+            // Adding headers to the request
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        })).json()
+        console.log(result);
+        if (result) {
+            console.log('Cart Empty')
             getCart()
         }
     }
@@ -301,17 +196,30 @@ const App = (props) => {
             getFavourites()
         }
     }
-    const removeItemFromCart = (id) => {
+    async function emptyFavourites(email) {
 
+        let result = await (await fetch("http://localhost:4000/api/emptyFavourites/" + email, {
+
+            // Adding method type
+            method: "DELETE",
+
+            // Adding headers to the request
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        })).json()
+        console.log(result);
+        if (result) {
+            console.log('empty Favourites')
+            getFavourites()
+        }
+    }
+    const removeItemFromCart = (id) => {
         removeFromCart(id)
-        let data = carrito && carrito.filter(item => item.id !== id)
-        cambiarCarrito(data)
     }
 
     const removeItemFromCartFav = (id) => {
         removeFromFavourites(id)
-        let data = carritoFav && carritoFav.filter(item => item.id !== id)
-        cambiarCarritoFav(data)
     }
 
     useEffect(() => {
@@ -328,6 +236,7 @@ const App = (props) => {
             getCart()
             getFavourites()
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user, isLoggedIn])
 
     const handleLogout = () => {
@@ -352,7 +261,7 @@ const App = (props) => {
         if (newQuantity > 0) {
             updateQuantity(id, newQuantity)
         } else {
-            alert('Sorry! Quantity cannot be less than 1')
+            removeItemFromCart(id)
         }
     }
 
@@ -396,15 +305,16 @@ const App = (props) => {
                             <Laptops agregarProductoAlCarrito={agregarProductoAlCarrito} agregarProductoAlCarritoFav={agregarProductoAlCarritoFav} removeItemFromCartFav={removeItemFromCartFav} cart={cartProducts} favProducts={favProducts}/>
                         </Route>
                         <Route path="/checkout">
-                            <Checkout carrito={carrito} carritoFav={carritoFav} removeItemFromCart={removeItemFromCart} increment={increment} decrement={decrement} removeItemFromCartFav={removeItemFromCartFav} clearCart={clearCart} clearCartFav={clearCartFav} getCart={getCart} cart={cart} />
+                            <Checkout removeItemFromCart={removeItemFromCart} increment={increment} decrement={decrement} removeItemFromCartFav={removeItemFromCartFav} clearCart={clearCart} getCart={getCart} cart={cart} />
                         </Route>
                         <Route path="/favorite">
-                            <Favorite carrito={carrito} carritoFav={favourites} removeItemFromCart={removeItemFromCart} removeItemFromCartFav={removeItemFromCartFav} clearCart={clearCart} clearCartFav={clearCartFav} />
+                            <Favorite carritoFav={favourites} removeItemFromCart={removeItemFromCart} removeItemFromCartFav={removeItemFromCartFav} clearFav={clearFav} />
                         </Route>
                         <Route path="/login" exact={true}>
                             <Login signIn={() => setIsLoggedIn(true)} saveUser={(data) => setUser(data)} />
                         </Route>
                         <Route path="/register" exact={true} component={Register} />
+                        <Route path="/order" exact={true} component={Order} />
                     </Switch>
                 </div>
             </BrowserRouter>

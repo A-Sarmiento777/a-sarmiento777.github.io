@@ -5,24 +5,21 @@ const Laptops = ({agregarProductoAlCarrito, agregarProductoAlCarritoFav, removeI
 	const [laptops, setLaptops] = useState([])
 
 	useEffect(() => {
+		async function getLaptops() {
+			try {
+				let response = await simpleFetch('http://localhost:4000/api/laptops')
+				if (response) {
+					setLaptops(response)
+				}
+			} catch (error) {
+				console.log(error)
+			}
+		}
 		getLaptops()
 	}, [])
 
 	async function simpleFetch(url) {
-
 		return await (await fetch(url)).json();
-
-	}
-
-	async function getLaptops() {
-		try {
-			let response = await simpleFetch('http://localhost:4000/api/laptops')
-			if (response) {
-				setLaptops(response)
-			}
-		} catch (error) {
-			console.log(error)
-		}
 	}
 	return (
 		<div className="pt-4 text-center"> 

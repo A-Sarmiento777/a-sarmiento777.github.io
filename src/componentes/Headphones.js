@@ -8,24 +8,21 @@ const Headphones = ({agregarProductoAlCarrito,agregarProductoAlCarritoFav, remov
 	const [headphones, setHeadphones] = useState([])
 
 	useEffect(() => {
+		async function getHeadphones() {
+			try {
+				let response = await simpleFetch('http://localhost:4000/api/headphones')
+				if (response) {
+					setHeadphones(response)
+				}
+			} catch (error) {
+				console.log(error)
+			}
+		}
 		getHeadphones()
 	}, [])
 
 	async function simpleFetch(url) {
-
 		return await (await fetch(url)).json();
-
-	}
-
-	async function getHeadphones() {
-		try {
-			let response = await simpleFetch('http://localhost:4000/api/headphones')
-			if (response) {
-				setHeadphones(response)
-			}
-		} catch (error) {
-			console.log(error)
-		}
 	}
 	return (
 		<div className="pt-4 text-center">

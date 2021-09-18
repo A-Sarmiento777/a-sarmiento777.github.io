@@ -1,7 +1,8 @@
 import React from 'react';
+import { useHistory } from 'react-router';
 
-const Favorite = ({ carritoFav, removeItemFromCartFav, clearCartFav }) => {
-
+const Favorite = ({ carritoFav, removeItemFromCartFav, clearFav }) => {
+    const history = useHistory()
     let amount = carritoFav?.map(a => a.price)
     let totalAmount = amount?.reduce((a, b) => a + b, 0)
 
@@ -44,9 +45,9 @@ const Favorite = ({ carritoFav, removeItemFromCartFav, clearCartFav }) => {
                 </div>
                 <div className="text-center mx-auto">
                     <button className="p-1 rounded" style={{ backgroundColor: 'black', color: 'white' }} onClick={() => {
-                        alert('Thanks for the Shopping')
-                        clearCartFav()
-                    }}>Checkout</button>
+                        clearFav()
+                        history.push('/home')
+                    }}>Clear Favourites</button>
                 </div>
                 </div>
             : null}

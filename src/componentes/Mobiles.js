@@ -7,6 +7,16 @@ const Mobiles = ({agregarProductoAlCarrito, agregarProductoAlCarritoFav, removeI
 	const [mobiles, setMobiles] = useState([])
 
 	useEffect(() => {
+		async function getMobiles() {
+			try {
+				let response = await simpleFetch('http://localhost:4000/api/mobiles')
+				if (response) {
+					setMobiles(response)
+				}
+			} catch (error) {
+				console.log(error)
+			}
+		}
 		getMobiles()
 	}, [])
 
@@ -16,16 +26,7 @@ const Mobiles = ({agregarProductoAlCarrito, agregarProductoAlCarritoFav, removeI
 
 	}
 
-	async function getMobiles() {
-		try {
-			let response = await simpleFetch('http://localhost:4000/api/mobiles')
-			if (response) {
-				setMobiles(response)
-			}
-		} catch (error) {
-			console.log(error)
-		}
-	}
+	
 	return (
 		<div className="pt-4 text-center">
 			<h1>Mobiles</h1>
