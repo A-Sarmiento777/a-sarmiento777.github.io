@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 
 
-const Headphones = ({agregarProductoAlCarrito,agregarProductoAlCarritoFav}) => {
+const Headphones = ({agregarProductoAlCarrito,agregarProductoAlCarritoFav, removeItemFromCartFav, cart, favProducts}) => {
 
 	const [headphones, setHeadphones] = useState([])
 
@@ -39,10 +40,12 @@ const Headphones = ({agregarProductoAlCarrito,agregarProductoAlCarritoFav}) => {
 							<img src={process.env.PUBLIC_URL + `/Assets/headphones/${headphone?.name}.jpg`} width='150' alt="logos" className="img-fluid py-2" />
 						</div>
 						<div>
-							<button className="bg-light border-0" onClick={() => agregarProductoAlCarritoFav(headphone?.id + 'm', headphone?.name, headphone?.price, 'headphones')}>
-							<img src={process.env.PUBLIC_URL + `/Assets/heart.png`} width='20' alt="logo"/>
-								</button>
-							<button className="bg-warning px-1 rounded ml-2" onClick={() => agregarProductoAlCarrito(headphone?.id + 'h', headphone?.name, headphone?.price, 'headphones', 1)}>Add</button>
+							{favProducts?.includes(headphone?.name) ? <button className="bg-light border-0"  onClick={() => removeItemFromCartFav(headphone.id + 'h')}>
+								<img src={process.env.PUBLIC_URL + `/Assets/heart.png`} width='20' alt="logo"/>
+							</button> : <button className="bg-light border-0" onClick={() => agregarProductoAlCarritoFav(headphone?.id + 'h', headphone?.name, headphone?.price, 'headphones')}>
+							<img src={process.env.PUBLIC_URL + `/Assets/fav.png`} width='20' alt="logo"/>
+								</button>}
+							{cart?.includes(headphone?.name) ? <Link to='/checkout'><button className='bg-success px-1 rounded ml-2'>View Cart</button></Link> : <button className="bg-warning px-1 rounded ml-2" onClick={() => agregarProductoAlCarrito(headphone?.id + 'h', headphone?.name, headphone?.price, 'headphones', 1)}>Add</button>}
 						</div>
 					</div>
 				)

@@ -21,6 +21,8 @@ const App = (props) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [user, setUser] = useState()
     const history = useHistory()
+    const [cartProducts, setCartProducts] = useState([])
+    const [favProducts, setFavProducts] = useState([])
 
     //update count productos
     useEffect(() => {
@@ -39,6 +41,8 @@ const App = (props) => {
             let response = await simpleFetch('http://localhost:4000/api/cart/' + user)
             if (response) {
                 setCart(response)
+                let names = response.map(a => a.name)
+                setCartProducts(names)
             }
         } catch (error) {
             console.log(error)
@@ -49,6 +53,8 @@ const App = (props) => {
             let response = await simpleFetch('http://localhost:4000/api/favourites/' + user)
             if (response) {
                 setFavourites(response)
+                let names = response.map(a => a.name)
+                setFavProducts(names)
             }
         } catch (error) {
             console.log(error)
@@ -204,7 +210,7 @@ const App = (props) => {
                 email: user
             }
         } else {
-            alert('Kindly Login to add to cart' + user + isLoggedIn)
+            alert('Kindly Login to add to Favourites')
         }
 
         if (data) {
@@ -328,7 +334,9 @@ const App = (props) => {
         setUser()
         setIsLoggedIn(false)
         setCart([])
+        setCartProducts([])
         setFavourites([])
+        setFavProducts([])
         localStorage.clear();
         history?.push('/login')
     }
@@ -379,13 +387,13 @@ const App = (props) => {
                     <Switch>
                         <Route path="/" exact={true} component={Home} />
                         <Route path="/mobiles">
-                            <Mobiles agregarProductoAlCarrito={agregarProductoAlCarrito} agregarProductoAlCarritoFav={agregarProductoAlCarritoFav} removeItemFromCartFav={removeItemFromCartFav} />
+                            <Mobiles agregarProductoAlCarrito={agregarProductoAlCarrito} agregarProductoAlCarritoFav={agregarProductoAlCarritoFav} removeItemFromCartFav={removeItemFromCartFav} cart={cartProducts} favProducts={favProducts}/>
                         </Route>
                         <Route path="/headphones">
-                            <Headphones agregarProductoAlCarrito={agregarProductoAlCarrito} agregarProductoAlCarritoFav={agregarProductoAlCarritoFav} />
+                            <Headphones agregarProductoAlCarrito={agregarProductoAlCarrito} agregarProductoAlCarritoFav={agregarProductoAlCarritoFav} removeItemFromCartFav={removeItemFromCartFav} cart={cartProducts} favProducts={favProducts}/>
                         </Route>
                         <Route path="/laptops">
-                            <Laptops agregarProductoAlCarrito={agregarProductoAlCarrito} agregarProductoAlCarritoFav={agregarProductoAlCarritoFav} />
+                            <Laptops agregarProductoAlCarrito={agregarProductoAlCarrito} agregarProductoAlCarritoFav={agregarProductoAlCarritoFav} removeItemFromCartFav={removeItemFromCartFav} cart={cartProducts} favProducts={favProducts}/>
                         </Route>
                         <Route path="/checkout">
                             <Checkout carrito={carrito} carritoFav={carritoFav} removeItemFromCart={removeItemFromCart} increment={increment} decrement={decrement} removeItemFromCartFav={removeItemFromCartFav} clearCart={clearCart} clearCartFav={clearCartFav} getCart={getCart} cart={cart} />

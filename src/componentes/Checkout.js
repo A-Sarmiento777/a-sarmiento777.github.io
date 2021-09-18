@@ -4,7 +4,7 @@ const Checkout = ({ carrito, removeItemFromCart, increment, decrement, clearCart
 
     
 	
-	let amount = cart && cart?.length && cart.map(a => a.price)
+	let amount = cart && cart?.length && cart.map(a => parseInt(a.price) * parseInt(a.quantity))
 	let totalAmount = amount && amount.length && amount?.reduce((a, b) => a + b, 0)
 	useEffect(() => {
 		getCart()
@@ -32,7 +32,7 @@ const Checkout = ({ carrito, removeItemFromCart, increment, decrement, clearCart
                                     <td><img src={process.env.PUBLIC_URL + `/Assets/${producto?.type}/${producto?.name}.jpg`} width='100' alt="logos" className="img-fluid py-2" /></td>
                                     <td>{producto?.name}</td>
                                     <td><button onClick={() => decrement(producto?.id, producto?.quantity)}>Decrease</button>{'  '}{producto?.quantity}{'  '}<button onClick={() => increment(producto?.id, producto?.quantity)}>Increase</button></td>
-                                    <td>{producto?.price}</td>
+                                    <td>{producto?.price * producto?.quantity}</td>
                                     <td onClick={() => removeItemFromCart(producto?.id)} style={{ color: 'red' }}>Remove</td>
                                 </tr>
                             </>
@@ -44,7 +44,7 @@ const Checkout = ({ carrito, removeItemFromCart, increment, decrement, clearCart
             {cart.length ? 
                 <div  className="mx-auto">
                 <div>
-                Price: {totalAmount - ((totalAmount * 25) / 100)+ ' kr'}
+                Price: {totalAmount - ((totalAmount * 25) / 100) + ' kr'}
                     
                 </div>
                 <div>
