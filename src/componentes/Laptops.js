@@ -1,27 +1,25 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
-const Laptops = ({agregarProductoAlCarrito, agregarProductoAlCarritoFav}) => {
+const Laptops = ({agregarProductoAlCarrito, agregarProductoAlCarritoFav, removeItemFromCartFav, cart, favProducts}) => {
 	const [laptops, setLaptops] = useState([])
 
 	useEffect(() => {
+		async function getLaptops() {
+			try {
+				let response = await simpleFetch('http://localhost:4000/api/laptops')
+				if (response) {
+					setLaptops(response)
+				}
+			} catch (error) {
+				console.log(error)
+			}
+		}
 		getLaptops()
 	}, [])
 
 	async function simpleFetch(url) {
-
 		return await (await fetch(url)).json();
-
-	}
-
-	async function getLaptops() {
-		try {
-			let response = await simpleFetch('http://localhost:4000/api/laptops')
-			if (response) {
-				setLaptops(response)
-			}
-		} catch (error) {
-			console.log(error)
-		}
 	}
 	return (
 		<div className="pt-4 text-center"> 
@@ -37,10 +35,12 @@ const Laptops = ({agregarProductoAlCarrito, agregarProductoAlCarritoFav}) => {
 							<img src={process.env.PUBLIC_URL + `/Assets/laptops/${laptop?.name}.jpg`} width='150' alt="logos" className="img-fluid py-2" />
 						</div>
 						<div>
-						<button className="bg-light border-0" onClick={() => agregarProductoAlCarritoFav(laptop?.id + 'm', laptop?.name, laptop?.price, 'laptops')}>
-						<img src={process.env.PUBLIC_URL + `/Assets/heart.png`} width='20' alt="logo"/>
-						</button>
-							<button className="bg-warning px-1 rounded ml-2"  onClick={() => agregarProductoAlCarrito(laptop?.id + 'l', laptop?.name, laptop?.price, 'laptops', 1)}>Add</button>
+						{favProducts?.includes(laptop?.name) ? <button className="bg-light border-0"  onClick={() => removeItemFromCartFav(laptop.id + 'l')}>
+								<img src={process.env.PUBLIC_URL + `/Assets/heart.png`} width='20' alt="logo"/>
+							</button> : <button className="bg-light border-0" onClick={() => agregarProductoAlCarritoFav(laptop?.id + 'l', laptop?.name, laptop?.price, 'laptops')}>
+						<img src={process.env.PUBLIC_URL + `/Assets/fav.png`} width='20' alt="logo"/>
+						</button>}
+							{cart?.includes(laptop?.name) ? <Link to='/checkout'><button className='bg-success px-1 rounded ml-2'>View Cart</button></Link> : <button className="bg-warning px-1 rounded ml-2"  onClick={() => agregarProductoAlCarrito(laptop?.id + 'l', laptop?.name, laptop?.price, 'laptops', 1)}>Add</button>}
 						</div>
 					</div>
 				)

@@ -87,6 +87,7 @@ const history = useHistory()
 						type="password"
 						className="form-control"
 						id="password"
+						minlength='8'
 						name="password"
 						placeholder="Write a password"
 						value ={password}

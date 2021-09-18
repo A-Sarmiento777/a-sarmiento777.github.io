@@ -43,7 +43,7 @@ const Register = (props) => {
 			})
 
 				// Converting to JSON
-				.then(response => response.status == 200 ? props.history.push('/login') : alert('Registration Failed'))
+				.then(response => response.status === 200 ? props.history.push('/login') : alert('Registration Failed'))
 
 			// Displaying results to console
 			//.then(json => console.log('json', json));
@@ -107,6 +107,7 @@ const Register = (props) => {
 							id="password"
 							name="password"
 							placeholder="Your password"
+							minlength='8'
 							value={password}
 							onChange={onChange} />
 					</div>
@@ -118,6 +119,7 @@ const Register = (props) => {
 							type="password"
 							id="confirm"
 							name="confirm"
+							minlength='8'
 							placeholder="Confirm your password"
 							value={confirm}
 							onChange={onChange} />
