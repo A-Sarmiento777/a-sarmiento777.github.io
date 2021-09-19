@@ -11,6 +11,20 @@ var jsonParser = bodyParser.json()
 // create application/x-www-form-urlencoded parser
 var urlencodedParser = bodyParser.urlencoded({ extended: true })
 
+//ESTE ES EL CODIGO QUE USO EL PROFESOR*****************
+// //Require modiles 
+// const path = require('path');
+// const express = require('express');
+// //Create a new web browser;
+// const app = express();
+// // Ask the web server to serve files form the folder ../dist
+// app.use(express.static(path.join(__dirname, '../dist' )));
+// //Start the web server on port 4000
+// app.listen(4000, () => console.log('Listening on port 4000'));
+//ESTE ES EL CODIGO QUE USO EL PROFESOR*****************
+
+
+
 // create a new web server
 const app = express();
 
