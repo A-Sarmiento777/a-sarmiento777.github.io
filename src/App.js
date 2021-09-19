@@ -74,7 +74,7 @@ const App = () => {
                 quantity: quantity
             }
         } else {
-            alert('Kindly Login to add to cart')
+            alert('Logga in to add to cart')
         }
 
         if (data) {
