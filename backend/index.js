@@ -29,7 +29,7 @@ app.use(bodyParser.urlencoded({
 // app.options('*', cors());
 
 // ask the web server to serve files from the frontend files
-app.use(express.static(path.join(__dirname, '../src')));
+app.use(express.static(path.join(__dirname, '../build')));
 
 app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -231,6 +231,8 @@ app.get('/api/logout', (req, res) => {
   })
 });
 
-
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../build', 'index.html'));
+});
 // start the web server
 app.listen(4000, () => console.log('Listening on port 4000'));
