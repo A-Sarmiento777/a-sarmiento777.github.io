@@ -2,7 +2,7 @@ const path = require('path');
 const express = require('express');
 const sqlDriver = require('better-sqlite3');
 // const cors = require('cors');
-const { request } = require('http');
+const { request } = require('https');
 const { response } = require('express');
 const bodyParser = require('body-parser')
 
@@ -234,5 +234,13 @@ app.get('/api/logout', (req, res) => {
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../src', 'index.html'));
 });
+
+
+
+/* 
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../build', 'index.html'));
+});
+ */
 // start the web server
 app.listen(4000, () => console.log('Listening on port 4000'));
