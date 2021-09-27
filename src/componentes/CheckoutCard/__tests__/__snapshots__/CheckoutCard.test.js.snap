@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CheckoutCard Card test 1`] = `
+<tr>
+  <td>
+    <img
+      alt="logos"
+      className="img-fluid py-2"
+      src="/Assets/asd/Test.jpg"
+      width="100"
+    />
+  </td>
+  <td>
+    Test
+  </td>
+  <td>
+    <button
+      onClick={[Function]}
+    >
+      Decrease
+    </button>
+      
+    1
+      
+    <button
+      onClick={[Function]}
+    >
+      Increase
+    </button>
+  </td>
+  <td>
+    6.7
+  </td>
+  <td
+    onClick={[Function]}
+    style={
+      Object {
+        "color": "red",
+      }
+    }
+  >
+    Remove
+  </td>
+</tr>
+`;
+
+exports[`CheckoutCard Card test 2`] = `
+<tr>
+  <td>
+    <img
+      alt="logos"
+      className="img-fluid py-2"
+      src="/Assets/asd/Test.jpg"
+      width="100"
+    />
+  </td>
+  <td>
+    Test
+  </td>
+  <td>
+    <button
+      onClick={[Function]}
+    >
+      Decrease
+    </button>
+      
+    1
+      
+    <button
+      onClick={[Function]}
+    >
+      Increase
+    </button>
+  </td>
+  <td>
+    6.7
+  </td>
+  <td
+    onClick={[Function]}
+    style={
+      Object {
+        "color": "red",
+      }
+    }
+  >
+    Remove
+  </td>
+</tr>
+`;

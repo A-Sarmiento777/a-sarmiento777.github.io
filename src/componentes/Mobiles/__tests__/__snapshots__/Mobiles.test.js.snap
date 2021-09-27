@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`It should render completed Mobiles 1`] = `
+<div
+  className="pt-4 text-center"
+>
+  <h1>
+    Mobiles
+  </h1>
+  <div
+    className="d-flex flex-wrap justify-content-center"
+  />
+</div>
+`;
