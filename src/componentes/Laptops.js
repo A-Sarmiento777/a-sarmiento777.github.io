@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { apiURL } from '../Utils/ApiUrl';
 
 const Laptops = ({agregarProductoAlCarrito, agregarProductoAlCarritoFav, removeItemFromCartFav, cart, favProducts}) => {
 	const [laptops, setLaptops] = useState([])
@@ -7,7 +8,7 @@ const Laptops = ({agregarProductoAlCarrito, agregarProductoAlCarritoFav, removeI
 	useEffect(() => {
 		async function getLaptops() {
 			try {
-				let response = await simpleFetch('http://localhost:4000/api/laptops')
+				let response = await simpleFetch(apiURL + 'api/laptops')
 				if (response) {
 					setLaptops(response)
 				}

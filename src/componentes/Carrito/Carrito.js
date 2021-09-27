@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { apiURL } from '../Utils/ApiUrl';
+import { apiURL } from '../../Utils/ApiUrl';
 
 const Carrito = ({ carrito, hideCart }) => {
 	

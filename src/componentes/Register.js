@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { apiURL } from '../Utils/ApiUrl';
 import './loginregister.css';
 const Register = (props) => {
 
@@ -28,7 +29,7 @@ const Register = (props) => {
 
 	function register(data) {
 		try {
-			fetch("http://localhost:4000/api/register", {
+			fetch(apiURL + "api/register", {
 
 				// Adding method type
 				method: "POST",

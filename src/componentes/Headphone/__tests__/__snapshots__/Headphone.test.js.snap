@@ -1,0 +1,115 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Headphone Card test 1`] = `
+<div
+  className="card mr-4 mb-4 p-3 shadow p-3 mb-5 bg-white rounded "
+  style={
+    Object {
+      "minWidth": "30px",
+      "width": "200px",
+    }
+  }
+>
+  <div
+    className="h6"
+  >
+    Test
+  </div>
+  <div
+    className="h6"
+  >
+    <small>
+       Price: 
+      6.7
+       kr 
+    </small>
+  </div>
+  <div
+    className="mx-auto"
+  >
+    <img
+      alt="logos"
+      className="img-fluid py-2"
+      src="/Assets/headphones/Test.jpg"
+      width="150"
+    />
+  </div>
+  <div>
+    <button
+      className="bg-light border-0"
+      onClick={[Function]}
+    >
+      <img
+        alt="logo"
+        src="/Assets/fav.png"
+        width="20"
+      />
+    </button>
+    <button
+      className="bg-warning px-1 rounded ml-2"
+      onClick={[Function]}
+    >
+      Add
+    </button>
+  </div>
+</div>
+`;
+
+exports[`Headphone Card test 2`] = `
+<div
+  className="card mr-4 mb-4 p-3 shadow p-3 mb-5 bg-white rounded "
+  style={
+    Object {
+      "minWidth": "30px",
+      "width": "200px",
+    }
+  }
+>
+  <div
+    className="h6"
+  >
+    Test
+  </div>
+  <div
+    className="h6"
+  >
+    <small>
+       Price: 
+      6.7
+       kr 
+    </small>
+  </div>
+  <div
+    className="mx-auto"
+  >
+    <img
+      alt="logos"
+      className="img-fluid py-2"
+      src="/Assets/headphones/Test.jpg"
+      width="150"
+    />
+  </div>
+  <div>
+    <button
+      className="bg-light border-0"
+      onClick={[Function]}
+    >
+      <img
+        alt="logo"
+        src="/Assets/fav.png"
+        width="20"
+      />
+    </button>
+    <a
+      href="/checkout"
+      onClick={[Function]}
+    >
+      <button
+        className="bg-success px-1 rounded ml-2"
+      >
+        View Cart
+      </button>
+    </a>
+  </div>
+</div>
+`;

@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`It should render completed Checkout 1`] = `
+<div
+  className="card p-4 mt-5 pt-4 mb-5 rounded"
+  style={
+    Object {
+      "minWidth": "460px",
+    }
+  }
+>
+  <h4>
+    Nothing in cart! Please Add some items
+  </h4>
+</div>
+`;

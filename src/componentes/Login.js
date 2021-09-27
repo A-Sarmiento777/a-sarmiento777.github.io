@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { apiURL } from '../Utils/ApiUrl';
 import './loginregister.css';
 
 const Login = ({signIn, saveUser}) => {
@@ -37,7 +38,7 @@ const history = useHistory()
 
 	async function login(data) {
 		
-			let result = await(await fetch("http://localhost:4000/api/login", {
+			let result = await(await fetch(apiURL + "api/login", {
 
 				// Adding method type
 				method: "POST",

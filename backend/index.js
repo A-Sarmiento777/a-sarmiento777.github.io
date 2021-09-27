@@ -1,30 +1,41 @@
 const path = require('path');
 const express = require('express');
 const sqlDriver = require('better-sqlite3');
-const cors = require('cors');
+// const cors = require('cors');
 const { request } = require('http');
 const { response } = require('express');
-var bodyParser = require('body-parser')
-// create application/json parser
-var jsonParser = bodyParser.json()
+const bodyParser = require('body-parser')
 
-// create application/x-www-form-urlencoded parser
 var urlencodedParser = bodyParser.urlencoded({ extended: true })
 
 // create a new web server
 const app = express();
+app.use(bodyParser.json())
 
 app.use(bodyParser.urlencoded({
   extended: true
 }));
-app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({
+//   extended: true
+// }));
+// app.use(bodyParser.json());
 
-//habilita el acceso a la data desde cualquier sitio
-app.use(cors());
-app.options('*', cors());
+// //habilita el acceso a la data desde cualquier sitio
+// app.use(cors());
+// app.options('*', cors());
 
 // ask the web server to serve files from the frontend files
-app.use(express.static(path.join(__dirname, '../frontend')));
+app.use(express.static(path.join(__dirname, '../src')));
+
+app.use(function (req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+
+  res.setHeader('Access-Control-Allow-Methods', 'GET, PUT, PATCH, POST, DELETE');
+  res.header('Access-Control-Allow-Headers', 
+  req.header('access-control-request-headers'));
+  next();
+});
+console.log(path.join(__dirname, '../src'));
 
 // create a connection to the database
 const db = new sqlDriver('../db/products.db');
@@ -73,9 +84,9 @@ app.get('/api/cart/:email', (req, res) => {
   FROM cart WHERE email = :email
   `);
   // run the query and return all the data
- // res.json(stmt.run({ email: req.params.id }));
- let result = stmt.all({ email: req.params.email });
- res.json(result);
+  // res.json(stmt.run({ email: req.params.id }));
+  let result = stmt.all({ email: req.params.email });
+  res.json(result);
 });
 app.get('/api/favourites/:email', (req, res) => {
   // create a db query as a prepared statement
@@ -91,7 +102,7 @@ app.get('/api/favourites/:email', (req, res) => {
   res.json(result);
 });
 
-app.put('/api/updateFavourites', urlencodedParser, (req, res) => {
+app.put('/api/updateFavourites', (req, res) => {
   let query = db.prepare(`
   UPDATE :type
    SET 
@@ -103,7 +114,7 @@ app.put('/api/updateFavourites', urlencodedParser, (req, res) => {
   res.json(query.all(req.body).length ? true : false);
 });
 
-app.put('/api/updateQuantity/:id/:quantity', urlencodedParser, (req, res) => {
+app.put('/api/updateQuantity/:id/:quantity', (req, res) => {
   let query = db.prepare(`
   UPDATE cart
    SET 
@@ -116,7 +127,7 @@ app.put('/api/updateQuantity/:id/:quantity', urlencodedParser, (req, res) => {
   res.json(query.run({ id: req.params.id, quantity: req.params.quantity }))
 });
 
-app.post('/api/addToCart', urlencodedParser, (req, res) => {
+app.post('/api/addToCart', (req, res) => {
   let query = db.prepare(`
   INSERT INTO cart (
     id,
@@ -138,7 +149,7 @@ VALUES (
 
   res.json(query.run(req.body));
 });
-app.post('/api/addToFavourites', urlencodedParser, (req, res) => {
+app.post('/api/addToFavourites', (req, res) => {
   let query = db.prepare(`
   INSERT INTO favourites (
     id,
@@ -158,29 +169,15 @@ VALUES (
 
   res.json(query.run(req.body));
 });
-app.delete('/api/removeFromFavourites/:id', urlencodedParser, (req, res) => {
+app.delete('/api/removeFromFavourites/:id', (req, res) => {
   let stmt = db.prepare(`
   DELETE FROM favourites
       WHERE id = :id
   `);
+
   res.json(stmt.run({ id: req.params.id }));
 });
-app.delete('/api/emptyFavourites/:email', urlencodedParser, (req, res) => {
-  let stmt = db.prepare(`
-  DELETE FROM favourites
-      WHERE email = :email
-  `);
-  res.json(stmt.run({ email: req.params.email }));
-});
-app.delete('/api/emptyCart/:email', urlencodedParser, (req, res) => {
-  let stmt = db.prepare(`
-  DELETE FROM cart
-      WHERE email = :email
-  `);
-
-  res.json(stmt.run({ email: req.params.email }));
-});
-app.delete('/api/removeFromCart/:id', urlencodedParser, (req, res) => {
+app.delete('/api/removeFromCart/:id', (req, res) => {
   let stmt = db.prepare(`
   DELETE FROM cart
       WHERE id = :id
@@ -189,7 +186,7 @@ app.delete('/api/removeFromCart/:id', urlencodedParser, (req, res) => {
   res.json(stmt.run({ id: req.params.id }));
 });
 
-app.post('/api/login', urlencodedParser, (req, res) => {
+app.post('/api/login', (req, res) => {
   let query = db.prepare(`
   SELECT
        *
@@ -201,7 +198,7 @@ app.post('/api/login', urlencodedParser, (req, res) => {
   res.json(query.all(req.body).length ? { data: req.body.email } : false);
 });
 
-app.post('/api/register', urlencodedParser, (req, res) => {
+app.post('/api/register', (req, res) => {
   console.log(req.body)
   var user = req.body;
 
@@ -230,6 +227,9 @@ app.get('/api/logout', (req, res) => {
   })
 });
 
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, '../src', 'index.html'));
+// });
 
 // start the web server
 app.listen(4000, () => console.log('Listening on port 4000'));

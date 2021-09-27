@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { apiURL } from '../Utils/ApiUrl';
 
 
 
@@ -10,7 +11,7 @@ const Headphones = ({agregarProductoAlCarrito,agregarProductoAlCarritoFav, remov
 	useEffect(() => {
 		async function getHeadphones() {
 			try {
-				let response = await simpleFetch('http://localhost:4000/api/headphones')
+				let response = await simpleFetch(apiURL + 'api/headphones')
 				if (response) {
 					setHeadphones(response)
 				}
@@ -29,6 +30,7 @@ const Headphones = ({agregarProductoAlCarrito,agregarProductoAlCarritoFav, remov
 			<h1>Headphones</h1>
 			<div className="d-flex flex-wrap justify-content-center">
 			{headphones && headphones.map( (headphone, index) => {
+				console.log(headphone?.name)
 				return (
 					<div key={index} className="card mr-4 mb-4 p-3 shadow p-3 mb-5 bg-white rounded " style={{width:"200px", minWidth:"30px"}}>
 						<div className="h6">{headphone?.name}</div>
