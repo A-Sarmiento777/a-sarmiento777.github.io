@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Switch, Route, BrowserRouter, useHistory } from 'react-router-dom';
 import Home from './componentes/Home';
-import Mobiles from './componentes/Mobiles';
-import Headphones from './componentes/Headphones';
-import Laptops from './componentes/Laptops';
+import Mobiles from './componentes/Mobiles/Mobiles';
+import Headphones from './componentes/Headphones/Headphones';
+import Laptops from './componentes/Laptops/Laptops';
 import Checkout from './componentes/Checkout';
 import Favorite from './componentes/Favorite';
 import Login from './componentes/Login';
@@ -12,15 +12,27 @@ import Menubar from './componentes/Menu';
 import Footer from './componentes/Footer';
 import Order from './componentes/Order';
 import { apiURL } from './Utils/ApiUrl';
-
+import { isMobile } from 'react-device-detect';
+import { useBreakpoints, useCurrentWidth } from 'react-breakpoints-hook';
 const App = () => {
     const [cart, setCart] = useState([])
     const [favourites, setFavourites] = useState([])
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [mobile, setMobile] = useState(isMobile);
     const [user, setUser] = useState()
     const history = useHistory()
     const [cartProducts, setCartProducts] = useState([])
     const [favProducts, setFavProducts] = useState([])
+    let width = useCurrentWidth();
+
+    useEffect(() => {
+        if(isMobile) {
+            console.log('isMobile', isMobile)
+            console.log('mobile', mobile)
+            setMobile(isMobile)
+        }
+        console.log('width', width)
+    }, [isMobile, mobile, width])
 
     async function simpleFetch(url) {
         return await (await fetch(url)).json();
@@ -86,22 +98,22 @@ const App = () => {
         try {
             let result = await (await fetch(apiURL + "api/addToCart", {
 
-            // Adding method type
-            method: "POST",
+                // Adding method type
+                method: "POST",
 
-            // Adding body or contents to send
-            body: JSON.stringify(data),
+                // Adding body or contents to send
+                body: JSON.stringify(data),
 
-            // Adding headers to the request
-            headers: {
-                "Content-type": "application/json; charset=UTF-8"
+                // Adding headers to the request
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+            })).json()
+            console.log(result);
+            if (result) {
+                console.log('Added To Cart');
+                getCart()
             }
-        })).json()
-        console.log(result);
-        if (result) {
-            console.log('Added To Cart');
-            getCart()
-        }
         } catch (error) {
             console.log(error)
         }
@@ -286,6 +298,76 @@ const App = () => {
         }
 
     }
+
+    let routes
+    let protectedRoutes
+    if (isLoggedIn) {
+        protectedRoutes = (
+            <Switch>
+                <Route path="/" exact={true} component={Home} />
+                <Route path="/mobiles">
+                    <Mobiles agregarProductoAlCarrito={agregarProductoAlCarrito} agregarProductoAlCarritoFav={agregarProductoAlCarritoFav} removeItemFromCartFav={removeItemFromCartFav} cart={cartProducts} favProducts={favProducts} />
+                </Route>
+                <Route path="/headphones">
+                    <Headphones agregarProductoAlCarrito={agregarProductoAlCarrito} agregarProductoAlCarritoFav={agregarProductoAlCarritoFav} removeItemFromCartFav={removeItemFromCartFav} cart={cartProducts} favProducts={favProducts} />
+                </Route>
+                <Route path="/laptops">
+                    <Laptops agregarProductoAlCarrito={agregarProductoAlCarrito} agregarProductoAlCarritoFav={agregarProductoAlCarritoFav} removeItemFromCartFav={removeItemFromCartFav} cart={cartProducts} favProducts={favProducts} />
+                </Route>
+                <Route path="/checkout">
+                    <Checkout removeItemFromCart={removeItemFromCart} increment={increment} decrement={decrement} removeItemFromCartFav={removeItemFromCartFav} clearCart={clearCart} getCart={getCart} cart={cart} />
+                </Route>
+                <Route path="/favorite">
+                    <Favorite carritoFav={favourites} removeItemFromCart={removeItemFromCart} removeItemFromCartFav={removeItemFromCartFav} clearFav={clearFav} />
+                </Route>
+                <Route path="/order" exact={true} component={Order} />
+            </Switch>
+        )
+    } else {
+        protectedRoutes = (
+            <Switch>
+
+                <Route path="/" exact={true}>
+                    <Login signIn={() => setIsLoggedIn(true)} saveUser={(data) => setUser(data)} />
+                </Route>
+                <Route path="/login" exact={true}>
+                    <Login signIn={() => setIsLoggedIn(true)} saveUser={(data) => setUser(data)} />
+                </Route>
+                <Route path="/register" exact={true} component={Register} />
+                <Route render={() => <div> Not Found </div>} />
+            </Switch>
+        )
+    }
+    if (mobile) {
+        routes = protectedRoutes
+    } else {
+        routes = (
+            <Switch>
+                <Route path="/" exact={true} component={Home} />
+                <Route path="/mobiles">
+                    <Mobiles agregarProductoAlCarrito={agregarProductoAlCarrito} agregarProductoAlCarritoFav={agregarProductoAlCarritoFav} removeItemFromCartFav={removeItemFromCartFav} cart={cartProducts} favProducts={favProducts} />
+                </Route>
+                <Route path="/headphones">
+                    <Headphones agregarProductoAlCarrito={agregarProductoAlCarrito} agregarProductoAlCarritoFav={agregarProductoAlCarritoFav} removeItemFromCartFav={removeItemFromCartFav} cart={cartProducts} favProducts={favProducts} />
+                </Route>
+                <Route path="/laptops">
+                    <Laptops agregarProductoAlCarrito={agregarProductoAlCarrito} agregarProductoAlCarritoFav={agregarProductoAlCarritoFav} removeItemFromCartFav={removeItemFromCartFav} cart={cartProducts} favProducts={favProducts} />
+                </Route>
+                <Route path="/checkout">
+                    <Checkout removeItemFromCart={removeItemFromCart} increment={increment} decrement={decrement} removeItemFromCartFav={removeItemFromCartFav} clearCart={clearCart} getCart={getCart} cart={cart} />
+                </Route>
+                <Route path="/favorite">
+                    <Favorite carritoFav={favourites} removeItemFromCart={removeItemFromCart} removeItemFromCartFav={removeItemFromCartFav} clearFav={clearFav} />
+                </Route>
+                <Route path="/order" exact={true} component={Order} />
+                <Route path="/login" exact={true}>
+                    <Login signIn={() => setIsLoggedIn(true)} saveUser={(data) => setUser(data)} />
+                </Route>
+                <Route path="/register" exact={true} component={Register} />
+            </Switch>
+        )
+    }
+
     return (
         <>
             <BrowserRouter>
@@ -294,29 +376,7 @@ const App = () => {
                     <img src={process.env.PUBLIC_URL + `/Assets/banner.png`} alt="logo" className="img-fluid" />
                 </div>
                 <div className="container mb-5" style={{ height: "100%" }}>
-                    <Switch>
-                        <Route path="/" exact={true} component={Home} />
-                        <Route path="/mobiles">
-                            <Mobiles agregarProductoAlCarrito={agregarProductoAlCarrito} agregarProductoAlCarritoFav={agregarProductoAlCarritoFav} removeItemFromCartFav={removeItemFromCartFav} cart={cartProducts} favProducts={favProducts}/>
-                        </Route>
-                        <Route path="/headphones">
-                            <Headphones agregarProductoAlCarrito={agregarProductoAlCarrito} agregarProductoAlCarritoFav={agregarProductoAlCarritoFav} removeItemFromCartFav={removeItemFromCartFav} cart={cartProducts} favProducts={favProducts}/>
-                        </Route>
-                        <Route path="/laptops">
-                            <Laptops agregarProductoAlCarrito={agregarProductoAlCarrito} agregarProductoAlCarritoFav={agregarProductoAlCarritoFav} removeItemFromCartFav={removeItemFromCartFav} cart={cartProducts} favProducts={favProducts}/>
-                        </Route>
-                        <Route path="/checkout">
-                            <Checkout removeItemFromCart={removeItemFromCart} increment={increment} decrement={decrement} removeItemFromCartFav={removeItemFromCartFav} clearCart={clearCart} getCart={getCart} cart={cart} />
-                        </Route>
-                        <Route path="/favorite">
-                            <Favorite carritoFav={favourites} removeItemFromCart={removeItemFromCart} removeItemFromCartFav={removeItemFromCartFav} clearFav={clearFav} />
-                        </Route>
-                        <Route path="/login" exact={true}>
-                            <Login signIn={() => setIsLoggedIn(true)} saveUser={(data) => setUser(data)} />
-                        </Route>
-                        <Route path="/register" exact={true} component={Register} />
-                        <Route path="/order" exact={true} component={Order} />
-                    </Switch>
+                    {routes}
                 </div>
             </BrowserRouter>
             <div style={{ position: "relative", left: "0", bottom: "0", right: "0", height: "auto" }}>

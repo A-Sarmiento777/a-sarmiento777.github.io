@@ -6,10 +6,6 @@ const { request } = require('http');
 const { response } = require('express');
 const bodyParser = require('body-parser')
 
-// create application/json parser
-// var jsonParser = bodyParser.json()
-
-// // create application/x-www-form-urlencoded parser
 var urlencodedParser = bodyParser.urlencoded({ extended: true })
 
 // create a new web server
@@ -231,6 +227,9 @@ app.get('/api/logout', (req, res) => {
   })
 });
 
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, '../src', 'index.html'));
+// });
 
 // start the web server
 app.listen(4000, () => console.log('Listening on port 4000'));
