@@ -5,7 +5,7 @@ import Mobiles from './componentes/Mobiles/Mobiles';
 import Headphones from './componentes/Headphones/Headphones';
 import Laptops from './componentes/Laptops/Laptops';
 import Checkout from './componentes/Checkout';
-import Favorite from './componentes/Favorite';
+import Favorite from './componentes/Favorite/Favorite';
 import Login from './componentes/Login';
 import Register from './componentes/Register';
 import Menubar from './componentes/Menu';
@@ -13,7 +13,7 @@ import Footer from './componentes/Footer';
 import Order from './componentes/Order';
 import { apiURL } from './Utils/ApiUrl';
 import { isMobile } from 'react-device-detect';
-import { useBreakpoints, useCurrentWidth } from 'react-breakpoints-hook';
+import { useCurrentWidth } from 'react-breakpoints-hook';
 import ElectronSpecific from './ElectronSpecific';
 const App = () => {
     const isElectron = navigator.userAgent.includes('Electron');
@@ -91,6 +91,7 @@ const App = () => {
             setMobile(isMobile)
         }
         console.log('width', width)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isMobile, mobile, width])
 
     async function simpleFetch(url) {
@@ -156,8 +157,9 @@ const App = () => {
         } else {
             alert('Logga in to add to cart')
         }
-
-        if (data) {
+console.log('data', data)
+console.log('isdata', !favourites.includes(data))
+        if (data && favourites.includes(data) === false) {
             addToCart(data)
         }
     }
@@ -420,7 +422,7 @@ const App = () => {
                     <Checkout removeItemFromCart={removeItemFromCart} increment={increment} decrement={decrement} removeItemFromCartFav={removeItemFromCartFav} clearCart={clearCart} getCart={getCart} cart={cart} />
                 </Route>
                 <Route path="/favorite">
-                    <Favorite carritoFav={favourites} removeItemFromCart={removeItemFromCart} removeItemFromCartFav={removeItemFromCartFav} clearFav={clearFav} />
+                    <Favorite carritoFav={favourites} cart={cart} agregarProductoAlCarrito={agregarProductoAlCarrito} removeItemFromCart={removeItemFromCart} removeItemFromCartFav={removeItemFromCartFav} clearFav={clearFav} />
                 </Route>
                 <Route path="/order" exact={true} component={Order} />
                 <Route path="/login" exact={true}>

@@ -14,7 +14,7 @@ export default function ElectronSpecific({ favourites, clearAllFav, agregarProdu
 
   // Use the fs and paths modules from node
   const fs = require('fs');
-  const path = require('path');
+  // const path = require('path');
 
   // State variables
   const [menuChoice, setMenuChoice] = useState('');
@@ -78,12 +78,8 @@ export default function ElectronSpecific({ favourites, clearAllFav, agregarProdu
     // that will remove the ipcRenderer-listener
     return () => ipcRenderer.off('menuChoice');
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  async function setElectronSpecificFn() {
-
-  }
-
   return <>
     <p>Last menu choice: {menuChoice}</p>
   </>
