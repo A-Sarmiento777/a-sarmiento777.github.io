@@ -14,7 +14,9 @@ import Order from './componentes/Order';
 import { apiURL } from './Utils/ApiUrl';
 import { isMobile } from 'react-device-detect';
 import { useBreakpoints, useCurrentWidth } from 'react-breakpoints-hook';
+import ElectronSpecific from './ElectronSpecific';
 const App = () => {
+    const isElectron = navigator.userAgent.includes('Electron');
     const [cart, setCart] = useState([])
     const [favourites, setFavourites] = useState([])
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -24,6 +26,63 @@ const App = () => {
     const [cartProducts, setCartProducts] = useState([])
     const [favProducts, setFavProducts] = useState([])
     let width = useCurrentWidth();
+    
+//  const require = window.require;
+//  const { ipcRenderer } = require('electron');
+//  const remote = require('@electron/remote');
+//  const { dialog } = remote;
+//  const fs = require('fs');
+//  const path = require('path');
+//  const [menuChoice, setMenuChoice] = useState('');
+
+//  useEffect(() => {
+//    ipcRenderer.on('menuChoice', (ipcEvent, choice) => {
+//      let fileExtensionToUse = 'json';
+//      if (choice === 'Save current wish list') {
+//        let filePath = dialog.showSaveDialogSync({
+//          properties: ['createDirectory']
+//        });
+
+//        if (filePath) {
+//          if (
+//            filePath.slice(-fileExtensionToUse.length - 1) !==
+//            '.' + fileExtensionToUse
+//          ) {
+//            filePath += '.' + fileExtensionToUse;
+//          }
+//          // save text as json
+//          let text = document.querySelector('.text-to-remember').value;
+//          console.log('text', text)
+//          let data = {
+//            id: 1,
+//            name: 'Alex Bro'
+//          }
+//          console.log(data)
+//          fs.writeFileSync(
+//            filePath,
+//            JSON.stringify({ textArea: data }),
+//            'utf-8'
+//          );
+//        }
+//      }
+//      if (choice === 'Load a wish list') {
+//        let filePaths = dialog.showOpenDialogSync({
+//          properties: ['openFile'],
+//          options: { filters: { extensions: [fileExtensionToUse] } }
+//        });
+//        console.log(filePaths)
+//        if (filePaths) {
+//          let json = fs.readFileSync(filePaths[0], 'utf-8');
+//          console.log('json', json)
+//          let data = JSON.parse(json);
+//          console.log('data', data)
+//          document.querySelector('.text-to-remember').value = data.textArea;
+//        }
+//      }
+//      setMenuChoice(choice);
+//    });
+//    return () => ipcRenderer.off('menuChoice');
+//  }, []);
 
     useEffect(() => {
         if(isMobile) {
@@ -52,11 +111,13 @@ const App = () => {
     }
     async function getFavourites() {
         try {
-            let response = await simpleFetch(apiURL + 'api/favourites/' + user)
+            let response = await simpleFetch(apiURL + 'api/favourites/' +  localStorage.getItem('email'))
             if (response) {
+                console.log('setFavourites', JSON.stringify(response))
                 setFavourites(response)
                 let names = response.map(a => a.name)
                 setFavProducts(names)
+                localStorage.setItem('favourites', JSON.stringify(response))
             }
         } catch (error) {
             console.log(error)
@@ -71,11 +132,17 @@ const App = () => {
     const clearFav = () => {
         setFavourites([])
         setFavProducts([])
+        console.log('user')
+        emptyFavourites(user)
+    }
+    const clearAllFav = (user) => {
+        setFavourites([])
+        setFavProducts([])
+        console.log('clearAllFav')
         emptyFavourites(user)
     }
 
     const agregarProductoAlCarrito = (idProductoAAgregar, nombre, price, type, quantity) => {
-
         let data
         if (user && isLoggedIn) {
             data = {
@@ -140,13 +207,13 @@ const App = () => {
     }
     const agregarProductoAlCarritoFav = (idProductoAAgregar, nombre, price, type) => {
         let data
-        if (user && isLoggedIn) {
+        if ((user || localStorage.getItem('email')) && (isLoggedIn || localStorage.getItem('token'))) {
             data = {
                 id: idProductoAAgregar,
                 name: nombre,
                 price: price,
                 type: type,
-                email: user
+                email: user ? user : localStorage.getItem('email')
             }
         } else {
             alert('Kindly Login to add to Favourites')
@@ -279,10 +346,7 @@ const App = () => {
     }
 
     async function updateQuantity(id, quantity) {
-
-
         let result = await (await fetch(`${apiURL}api/updateQuantity/${id}/${quantity}`, {
-
             // Adding method type
             method: "PUT",
 
@@ -326,7 +390,6 @@ const App = () => {
     } else {
         protectedRoutes = (
             <Switch>
-
                 <Route path="/" exact={true}>
                     <Login signIn={() => setIsLoggedIn(true)} saveUser={(data) => setUser(data)} />
                 </Route>
@@ -370,6 +433,7 @@ const App = () => {
 
     return (
         <>
+        {isElectron && <ElectronSpecific favourites={favourites} clearAllFav={clearAllFav} emptyFavourites={emptyFavourites} agregarProductoAlCarritoFav={agregarProductoAlCarritoFav}/>}
             <BrowserRouter>
                 <Menubar count={cart?.length} countFav={favourites?.length} handleLogout={handleLogout} isLoggedIn={isLoggedIn} user={user} />
                 <div className="mx-auto text-center" >
