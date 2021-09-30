@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { apiURL } from '../../Utils/ApiUrl';
 import Laptop from '../Laptop/Laptop';
 
@@ -18,6 +17,7 @@ const Laptops = ({agregarProductoAlCarrito, agregarProductoAlCarritoFav, removeI
 			}
 		}
 		getLaptops()
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
 	async function simpleFetch(url) {

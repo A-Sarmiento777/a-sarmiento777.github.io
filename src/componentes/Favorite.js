@@ -1,13 +1,17 @@
 import React from 'react';
 import { useHistory } from 'react-router';
 
-const Favorite = ({ carritoFav, removeItemFromCartFav, clearFav }) => {
+const Favorite = ({ carritoFav, agregarProductoAlCarrito, removeItemFromCartFav, clearFav }) => {
     const history = useHistory()
     let amount = carritoFav?.map(a => a.price)
     let totalAmount = amount?.reduce((a, b) => a + b, 0)
-
+    const addFavToCart = async () => {
+        await carritoFav?.map((producto) => agregarProductoAlCarrito(producto?.id, producto?.name, producto?.price, producto?.type, 1))
+        clearFav()
+        history.push('/checkout')
+    }
     return (
-        <div className="card p-4 mt-5 pt-4 mb-5 rounded" style={{minWidth:"460px"}}>
+        <div className="card p-4 mt-5 pt-4 mb-5 rounded" style={{ minWidth: "460px" }}>
             {carritoFav.length ? <table style={{ width: '100%' }}>
                 <thead>
                     <tr>
@@ -18,7 +22,7 @@ const Favorite = ({ carritoFav, removeItemFromCartFav, clearFav }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {carritoFav?.map( (producto, index) => {
+                    {carritoFav?.map((producto, index) => {
                         return (
                             <>
                                 <tr key="index">
@@ -33,25 +37,25 @@ const Favorite = ({ carritoFav, removeItemFromCartFav, clearFav }) => {
                 </tbody>
             </table> : <h4>Nothing in Fav! Please Add some items</h4>}
 
-            {carritoFav.length ? 
-                <div  className="mx-auto">
-                <div>
-                Price: {totalAmount - ((totalAmount * 25) / 100)+ ' kr'}
-                    
-                </div>
-                <div>
-                Incl moms: {totalAmount + ' kr'}
-                
-                </div>
-                <div className="text-center mx-auto">
-                    <button className="p-1 rounded" style={{ backgroundColor: 'black', color: 'white' }} onClick={() => {
+            {carritoFav.length ?
+                <div className="mx-auto">
+                    <div>
+                        Price: {totalAmount - ((totalAmount * 25) / 100) + ' kr'}
+
+                    </div>
+                    <div>
+                        Incl moms: {totalAmount + ' kr'}
+
+                    </div>
+                    <div className="text-center mx-auto">
+                        <button className="p-1 rounded" style={{ backgroundColor: 'black', color: 'white' }} onClick={addFavToCart}>Add to Cart from Favourites</button>
+                        {/* <button className="p-1 rounded" style={{ backgroundColor: 'black', color: 'white' }} onClick={() => {
                         clearFav()
                         history.push('/home')
-                    }}>Clear Favourites</button>
+                    }}>Clear Favourites</button> */}
+                    </div>
                 </div>
-                </div>
-            : null}
-
+                : null}
         </div >
     );
 }

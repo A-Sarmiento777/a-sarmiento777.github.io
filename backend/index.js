@@ -186,6 +186,22 @@ app.delete('/api/removeFromCart/:id', (req, res) => {
   res.json(stmt.run({ id: req.params.id }));
 });
 
+app.delete('/api/emptyFavourites/:email', (req, res) => {
+  let stmt = db.prepare(`
+  DELETE FROM favourites
+      WHERE email = :email
+  `);
+  res.json(stmt.run({ email: req.params.email }));
+});
+app.delete('/api/emptyCart/:email', (req, res) => {
+  let stmt = db.prepare(`
+  DELETE FROM cart
+      WHERE email = :email
+  `);
+
+  res.json(stmt.run({ email: req.params.email }));
+});
+
 app.post('/api/login', (req, res) => {
   let query = db.prepare(`
   SELECT

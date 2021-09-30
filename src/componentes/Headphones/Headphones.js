@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { apiURL } from "../../Utils/ApiUrl";
 import Headphone from "../Headphone/Headphone";
 
@@ -20,6 +19,7 @@ const Headphones = ({ agregarProductoAlCarrito, agregarProductoAlCarritoFav, rem
 
   useEffect(() => {
     getHeadphones();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

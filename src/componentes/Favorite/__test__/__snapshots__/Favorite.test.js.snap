@@ -109,7 +109,7 @@ exports[`It should render completed Favorite 1`] = `
           }
         }
       >
-        Clear Favourites
+        Add to Cart from Favourites
       </button>
     </div>
   </div>
