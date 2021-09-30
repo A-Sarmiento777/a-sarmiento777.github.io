@@ -7,7 +7,7 @@ const Mobile = ({ agregarProductoAlCarrito, agregarProductoAlCarritoFav, removeI
             <div className="h6">{mobile?.name}</div>
             <div className="h6"> <small> Price: {mobile?.price} $ </small></div>
             <div className="mx-auto">
-                <img src={process.env.PUBLIC_URL + `/Assets/mobiles/${mobile?.name}.jpg`} width='150' alt="logos" className="img-fluid py-2" />
+                <img src={process.env.PUBLIC_URL + `/Assets/mobiles/${mobile?.name?.replace(' ', '')}.jpg`} width='150' alt="logos" className="img-fluid py-2" />
             </div>
             <div>
                 {favProducts?.includes(mobile?.name) ? <button className="bg-light border-0" onClick={() => removeItemFromCartFav(mobile.id + 'm')}>
