@@ -39,7 +39,7 @@ const Home = () => {
 				</div>
 				<div className="col-12 col-sm-6 col-lg-3 mb-4 mt-5">
 					<div className="card ">
-						<img src={process.env.PUBLIC_URL + `/Assets/home-list/Iphone SE.jpg`} alt="hello" className="card-img-top" />
+						<img src={process.env.PUBLIC_URL + `/Assets/home-list/IphoneSE.jpg`} alt="hello" className="card-img-top" />
 						<div className="card-body">
 							<h3 className="card-title">IPhone SE</h3>
 							
@@ -56,7 +56,7 @@ const Home = () => {
 				</div>
 				<div className="col-12 col-sm-6 col-lg-3 mb-4 mt-5">
 					<div className="card ">
-						<img src={process.env.PUBLIC_URL + `/Assets/home-list/Huawei P40 lite.jpg`} alt="hello" className="card-img-top" />
+						<img src={process.env.PUBLIC_URL + `/Assets/home-list/HuaweiP40lite.jpg`} alt="hello" className="card-img-top" />
 						<div className="card-body">
 							<h3 className="card-title">Huawei P40 Lite</h3>
 							
