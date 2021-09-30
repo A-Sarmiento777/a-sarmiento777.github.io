@@ -407,7 +407,7 @@ console.log('isdata', !favourites.includes(data))
                     <Login signIn={() => setIsLoggedIn(true)} saveUser={(data) => setUser(data)} />
                 </Route>
                 <Route path="/register" exact={true} component={Register} />
-                <Route render={() => <div> Log in in order to use the app </div>} />
+                <Route render={() => <div> Log in to use the app </div>} />
             </Switch>
         )
     }
