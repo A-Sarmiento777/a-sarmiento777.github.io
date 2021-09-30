@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { apiURL } from '../Utils/ApiUrl';
+//import { apiURL } from '../Utils/ApiUrl';
 
 const Carrito = ({ carrito, hideCart }) => {
 	
@@ -21,7 +21,8 @@ const Carrito = ({ carrito, hideCart }) => {
 
 	async function getCart() {
 		try {
-			let response = await simpleFetch(apiURL + 'api/cart')
+			//let response = await simpleFetch(apiURL + 'api/cart')
+			let response = await simpleFetch('/api/cart')
 			if (response) {
 				setCart(response)
 			}

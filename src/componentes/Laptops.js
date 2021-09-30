@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { apiURL } from '../Utils/ApiUrl';
+//import { apiURL } from '../Utils/ApiUrl';
 
 const Laptops = ({agregarProductoAlCarrito, agregarProductoAlCarritoFav, removeItemFromCartFav, cart, favProducts}) => {
 	const [laptops, setLaptops] = useState([])
@@ -8,7 +8,8 @@ const Laptops = ({agregarProductoAlCarrito, agregarProductoAlCarritoFav, removeI
 	useEffect(() => {
 		async function getLaptops() {
 			try {
-				let response = await simpleFetch(apiURL + 'api/laptops')
+				//let response = await simpleFetch(apiURL + 'api/laptops')
+				let response = await simpleFetch('/api/laptops')
 				if (response) {
 					setLaptops(response)
 				}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { apiURL } from '../../Utils/ApiUrl';
+//import { apiURL } from '../../Utils/ApiUrl';
 import Laptop from '../Laptop/Laptop';
 
 const Laptops = ({agregarProductoAlCarrito, agregarProductoAlCarritoFav, removeItemFromCartFav, cart, favProducts}) => {
@@ -8,7 +8,8 @@ const Laptops = ({agregarProductoAlCarrito, agregarProductoAlCarritoFav, removeI
 	useEffect(() => {
 		async function getLaptops() {
 			try {
-				let response = await simpleFetch(apiURL + 'api/laptops')
+				//let response = await simpleFetch(apiURL + 'api/laptops')
+				let response = await simpleFetch('/api/laptops')
 				if (response) {
 					setLaptops(response)
 				}

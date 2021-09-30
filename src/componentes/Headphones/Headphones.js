@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { apiURL } from "../../Utils/ApiUrl";
+//import { apiURL } from "../../Utils/ApiUrl";
 import Headphone from "../Headphone/Headphone";
 
 const Headphones = ({ agregarProductoAlCarrito, agregarProductoAlCarritoFav, removeItemFromCartFav, cart, favProducts }) => {
@@ -7,7 +7,8 @@ const Headphones = ({ agregarProductoAlCarrito, agregarProductoAlCarritoFav, rem
 
   async function getHeadphones() {
     try {
-      let response = await fetch(apiURL + "api/headphones");
+      //let response = await fetch(apiURL + "api/headphones");
+      let response = await fetch("/api/headphones");
       let data = await response.json();
       if (data) {
         setHeadphones(data);

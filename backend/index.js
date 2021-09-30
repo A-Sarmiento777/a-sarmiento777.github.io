@@ -25,7 +25,7 @@ app.use(bodyParser.urlencoded({
 // app.options('*', cors());
 
 // ask the web server to serve files from the frontend files
-app.use(express.static(path.join(__dirname, '../src')));
+app.use(express.static(path.join(__dirname, '../build')));
 
 app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -38,7 +38,7 @@ app.use(function (req, res, next) {
 console.log(path.join(__dirname, '../src'));
 
 // create a connection to the database
-const db = new sqlDriver('../db/products.db');
+const db = new sqlDriver(path.join(__dirname, '../db/products.db'));
 
 // make some REST routes
 app.get('/api/mobiles', (req, res) => {
@@ -243,9 +243,9 @@ app.get('/api/logout', (req, res) => {
   })
 });
 
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname, '../src', 'index.html'));
-// });
+ app.get('*', (req, res) => {
+   res.sendFile(path.join(__dirname, '../build', 'index.html'));
+ });
 
 // start the web server
 app.listen(4000, () => console.log('Listening on port 4000'));

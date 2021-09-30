@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { apiURL } from '../../Utils/ApiUrl';
+//import { apiURL } from '../../Utils/ApiUrl';
 import Mobile from '../Mobile/Mobile';
 
 const Mobiles = ({agregarProductoAlCarrito, agregarProductoAlCarritoFav, removeItemFromCartFav, cart, favProducts}) => {
@@ -8,7 +8,8 @@ const Mobiles = ({agregarProductoAlCarrito, agregarProductoAlCarritoFav, removeI
 	useEffect(() => {
 		async function getMobiles() {
 			try {
-				let response = await simpleFetch(apiURL + 'api/mobiles')
+				//let response = await simpleFetch(apiURL + 'api/mobiles')
+				let response = await simpleFetch('/api/mobiles')
 				if (response) {
 					setMobiles(response)
 				}

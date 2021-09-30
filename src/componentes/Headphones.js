@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { apiURL } from '../Utils/ApiUrl';
+//import { apiURL } from '../Utils/ApiUrl';
 
 
 
@@ -11,7 +11,8 @@ const Headphones = ({agregarProductoAlCarrito,agregarProductoAlCarritoFav, remov
 	useEffect(() => {
 		async function getHeadphones() {
 			try {
-				let response = await simpleFetch(apiURL + 'api/headphones')
+				//let response = await simpleFetch(apiURL + 'api/headphones')
+				let response = await simpleFetch('/api/headphones')
 				if (response) {
 					setHeadphones(response)
 				}

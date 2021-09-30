@@ -11,7 +11,7 @@ import Register from './componentes/Register';
 import Menubar from './componentes/Menu';
 import Footer from './componentes/Footer';
 import Order from './componentes/Order';
-import { apiURL } from './Utils/ApiUrl';
+//import { apiURL } from './Utils/ApiUrl';
 import { isMobile } from 'react-device-detect';
 import { useCurrentWidth } from 'react-breakpoints-hook';
 import ElectronSpecific from './ElectronSpecific';
@@ -100,7 +100,7 @@ const App = () => {
 
     async function getCart() {
         try {
-            let response = await simpleFetch(apiURL + 'api/cart/' + user)
+            let response = await simpleFetch('/api/cart/' + user)
             if (response) {
                 setCart(response)
                 let names = response.map(a => a.name)
@@ -112,7 +112,8 @@ const App = () => {
     }
     async function getFavourites() {
         try {
-            let response = await simpleFetch(apiURL + 'api/favourites/' +  localStorage.getItem('email'))
+            //let response = await simpleFetch(apiURL + 'api/favourites/' +  localStorage.getItem('email'))
+            let response = await simpleFetch('/api/favourites/' +  localStorage.getItem('email'))
             if (response) {
                 console.log('setFavourites', JSON.stringify(response))
                 setFavourites(response)
@@ -165,7 +166,8 @@ console.log('isdata', !favourites.includes(data))
     }
     async function addToCart(data) {
         try {
-            let result = await (await fetch(apiURL + "api/addToCart", {
+            //let result = await (await fetch(apiURL + "api/addToCart", {
+            let result = await (await fetch("/api/addToCart", {
 
                 // Adding method type
                 method: "POST",
@@ -188,7 +190,8 @@ console.log('isdata', !favourites.includes(data))
         }
     }
     async function addToFavourites(data) {
-        let result = await (await fetch(apiURL + "api/addToFavourites", {
+        //let result = await (await fetch(apiURL + "api/addToFavourites", {
+        let result = await (await fetch("/api/addToFavourites", {
 
             // Adding method type
             method: "POST",
@@ -228,7 +231,8 @@ console.log('isdata', !favourites.includes(data))
 
     async function removeFromCart(id) {
 
-        let result = await (await fetch(apiURL + "api/removeFromCart/" + id, {
+        //let result = await (await fetch(apiURL + "api/removeFromCart/" + id, {
+        let result = await (await fetch("/api/removeFromCart/" + id, {
 
             // Adding method type
             method: "DELETE",
@@ -246,7 +250,8 @@ console.log('isdata', !favourites.includes(data))
     }
     async function emptyCart(email) {
 
-        let result = await (await fetch(apiURL + "api/emptyCart/" + email, {
+        //let result = await (await fetch(apiURL + "api/emptyCart/" + email, {
+        let result = await (await fetch("/api/emptyCart/" + email, {
             // Adding method type
             method: "DELETE",
             // Adding headers to the request
@@ -262,7 +267,8 @@ console.log('isdata', !favourites.includes(data))
     }
     async function removeFromFavourites(id) {
 
-        let result = await (await fetch(apiURL + "api/removeFromFavourites/" + id, {
+        //let result = await (await fetch(apiURL + "api/removeFromFavourites/" + id, {
+        let result = await (await fetch("/api/removeFromFavourites/" + id, {
 
             // Adding method type
             method: "DELETE",
@@ -280,7 +286,8 @@ console.log('isdata', !favourites.includes(data))
     }
     async function emptyFavourites(email) {
 
-        let result = await (await fetch(apiURL + "api/emptyFavourites/" + email, {
+        //let result = await (await fetch(apiURL + "api/emptyFavourites/" + email, {
+        let result = await (await fetch("/api/emptyFavourites/" + email, {
 
             // Adding method type
             method: "DELETE",
@@ -348,7 +355,8 @@ console.log('isdata', !favourites.includes(data))
     }
 
     async function updateQuantity(id, quantity) {
-        let result = await (await fetch(`${apiURL}api/updateQuantity/${id}/${quantity}`, {
+        //let result = await (await fetch(`${apiURL}api/updateQuantity/${id}/${quantity}`, {
+        let result = await (await fetch(`/api/updateQuantity/${id}/${quantity}`, {
             // Adding method type
             method: "PUT",
 
