@@ -67,7 +67,7 @@ const Home = () => {
 					<div className="card ">
 						<img src={process.env.PUBLIC_URL + `/Assets/home-list/Apple AirPods 2019.jpg`} alt="hello" className="card-img-top" />
 						<div className="card-body">
-							<h3 className="card-title">Apple Airpods</h3>
+							<h3 className="card-title">Apple Airpods 2019</h3>
 							
 						</div>
 					</div>
