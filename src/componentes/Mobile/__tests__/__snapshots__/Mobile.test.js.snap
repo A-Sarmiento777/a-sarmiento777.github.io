@@ -22,7 +22,7 @@ exports[`Mobile Card test 1`] = `
     <small>
        Price: 
       6.7
-       kr 
+       $ 
     </small>
   </div>
   <div
@@ -78,7 +78,7 @@ exports[`Mobile Card test 2`] = `
     <small>
        Price: 
       6.7
-       kr 
+       $ 
     </small>
   </div>
   <div

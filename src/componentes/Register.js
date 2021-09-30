@@ -115,7 +115,7 @@ const Register = (props) => {
 					</div>
 
 					<div lassName="form-group">
-						<label className="col-12 text-left pl-1" htmlFor="confirm">Repeate password</label>
+						<label className="col-12 text-left pl-1" htmlFor="confirm">Repeat password</label>
 						<input
 							className="form-control"
 							type="password"

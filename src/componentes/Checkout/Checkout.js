@@ -35,11 +35,11 @@ const Checkout = ({ removeItemFromCart, increment, decrement, clearCart, getCart
             {cart.length ? 
                 <div  className="mx-auto">
                 <div>
-                Price: {totalAmount - ((totalAmount * 25) / 100) + ' kr'}
+                Price: {totalAmount - ((totalAmount * 25) / 100) + ' $'}
                     
                 </div>
                 <div>
-                Incl moms: {totalAmount + ' kr'}
+                Incl tax: {totalAmount + ' $'}
 
                 </div>
                 <div className="text-center mx-auto">

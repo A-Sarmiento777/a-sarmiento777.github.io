@@ -90,11 +90,11 @@ exports[`It should render completed Favorite 1`] = `
   >
     <div>
       Price: 
-      5.025 kr
+      5.025 $
     </div>
     <div>
-      Incl moms: 
-      06.7 kr
+      Incl tax: 
+      06.7 $
     </div>
     <div
       className="text-center mx-auto"
