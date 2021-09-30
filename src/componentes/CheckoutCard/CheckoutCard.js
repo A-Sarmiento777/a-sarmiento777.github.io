@@ -5,6 +5,7 @@ const CheckoutCard = ({ removeItemFromCart, increment, decrement, getCart, cart,
     const history = useHistory()
     let amount = cart && cart?.length && cart.map(a => parseInt(a.price) * parseInt(a.quantity))
     let totalAmount = amount && amount.length && amount?.reduce((a, b) => a + b, 0)
+    console.log('producto?.type', producto)
     useEffect(() => {
         getCart()
         // eslint-disable-next-line react-hooks/exhaustive-deps
