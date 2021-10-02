@@ -354,6 +354,21 @@ console.log('isdata', !favourites.includes(data))
         }
     }
 
+    const priceFormatter = (value) => {
+  let options =  {
+  significantDigits: 2,
+  thousandsSeparator: ' ',
+  decimalSeparator: '.',
+}
+  value = value.toFixed(options.significantDigits)
+
+  const [price] = value.split('.')
+  return `${price.replace(
+    /\B(?=(\d{3})+(?!\d))/g,
+    options.thousandsSeparator
+  )}:-`
+}
+
     async function updateQuantity(id, quantity) {
         //let result = await (await fetch(`${apiURL}api/updateQuantity/${id}/${quantity}`, {
         let result = await (await fetch(`/api/updateQuantity/${id}/${quantity}`, {
@@ -379,7 +394,7 @@ console.log('isdata', !favourites.includes(data))
         protectedRoutes = (
             <Switch>
                 <Route path="/" exact={true} component={Home} />
-                <Route path="/mobiles">
+                {/* <Route path="/mobiles">
                     <Mobiles agregarProductoAlCarrito={agregarProductoAlCarrito} agregarProductoAlCarritoFav={agregarProductoAlCarritoFav} removeItemFromCartFav={removeItemFromCartFav} cart={cartProducts} favProducts={favProducts} />
                 </Route>
                 <Route path="/headphones">
@@ -394,7 +409,25 @@ console.log('isdata', !favourites.includes(data))
                 <Route path="/favorite">
                     <Favorite carritoFav={favourites} removeItemFromCart={removeItemFromCart} removeItemFromCartFav={removeItemFromCartFav} clearFav={clearFav} />
                 </Route>
+                <Route path="/order" exact={true} component={Order} /> */}
+
+                <Route path="/mobiles">
+                    <Mobiles priceFormatter={priceFormatter} agregarProductoAlCarrito={agregarProductoAlCarrito} agregarProductoAlCarritoFav={agregarProductoAlCarritoFav} removeItemFromCartFav={removeItemFromCartFav} cart={cartProducts} favProducts={favProducts} />
+                </Route>
+                <Route path="/headphones">
+                    <Headphones priceFormatter={priceFormatter} agregarProductoAlCarrito={agregarProductoAlCarrito} agregarProductoAlCarritoFav={agregarProductoAlCarritoFav} removeItemFromCartFav={removeItemFromCartFav} cart={cartProducts} favProducts={favProducts} />
+                </Route>
+                <Route path="/laptops">
+                    <Laptops priceFormatter={priceFormatter} agregarProductoAlCarrito={agregarProductoAlCarrito} agregarProductoAlCarritoFav={agregarProductoAlCarritoFav} removeItemFromCartFav={removeItemFromCartFav} cart={cartProducts} favProducts={favProducts} />
+                </Route>
+                <Route path="/checkout">
+                    <Checkout priceFormatter={priceFormatter} removeItemFromCart={removeItemFromCart} increment={increment} decrement={decrement} removeItemFromCartFav={removeItemFromCartFav} clearCart={clearCart} getCart={getCart} cart={cart} />
+                </Route>
+                <Route path="/favorite">
+                    <Favorite priceFormatter={priceFormatter} carritoFav={favourites} cart={cart} agregarProductoAlCarrito={agregarProductoAlCarrito} removeItemFromCart={removeItemFromCart} removeItemFromCartFav={removeItemFromCartFav} clearFav={clearFav} />
+                </Route>
                 <Route path="/order" exact={true} component={Order} />
+                
             </Switch>
         )
     } else {
@@ -418,19 +451,19 @@ console.log('isdata', !favourites.includes(data))
             <Switch>
                 <Route path="/" exact={true} component={Home} />
                 <Route path="/mobiles">
-                    <Mobiles agregarProductoAlCarrito={agregarProductoAlCarrito} agregarProductoAlCarritoFav={agregarProductoAlCarritoFav} removeItemFromCartFav={removeItemFromCartFav} cart={cartProducts} favProducts={favProducts} />
+                    <Mobiles priceFormatter={priceFormatter} agregarProductoAlCarrito={agregarProductoAlCarrito} agregarProductoAlCarritoFav={agregarProductoAlCarritoFav} removeItemFromCartFav={removeItemFromCartFav} cart={cartProducts} favProducts={favProducts} />
                 </Route>
                 <Route path="/headphones">
-                    <Headphones agregarProductoAlCarrito={agregarProductoAlCarrito} agregarProductoAlCarritoFav={agregarProductoAlCarritoFav} removeItemFromCartFav={removeItemFromCartFav} cart={cartProducts} favProducts={favProducts} />
+                    <Headphones priceFormatter={priceFormatter} agregarProductoAlCarrito={agregarProductoAlCarrito} agregarProductoAlCarritoFav={agregarProductoAlCarritoFav} removeItemFromCartFav={removeItemFromCartFav} cart={cartProducts} favProducts={favProducts} />
                 </Route>
                 <Route path="/laptops">
-                    <Laptops agregarProductoAlCarrito={agregarProductoAlCarrito} agregarProductoAlCarritoFav={agregarProductoAlCarritoFav} removeItemFromCartFav={removeItemFromCartFav} cart={cartProducts} favProducts={favProducts} />
+                    <Laptops priceFormatter={priceFormatter} agregarProductoAlCarrito={agregarProductoAlCarrito} agregarProductoAlCarritoFav={agregarProductoAlCarritoFav} removeItemFromCartFav={removeItemFromCartFav} cart={cartProducts} favProducts={favProducts} />
                 </Route>
                 <Route path="/checkout">
-                    <Checkout removeItemFromCart={removeItemFromCart} increment={increment} decrement={decrement} removeItemFromCartFav={removeItemFromCartFav} clearCart={clearCart} getCart={getCart} cart={cart} />
+                    <Checkout priceFormatter={priceFormatter} removeItemFromCart={removeItemFromCart} increment={increment} decrement={decrement} removeItemFromCartFav={removeItemFromCartFav} clearCart={clearCart} getCart={getCart} cart={cart} />
                 </Route>
                 <Route path="/favorite">
-                    <Favorite carritoFav={favourites} cart={cart} agregarProductoAlCarrito={agregarProductoAlCarrito} removeItemFromCart={removeItemFromCart} removeItemFromCartFav={removeItemFromCartFav} clearFav={clearFav} />
+                    <Favorite priceFormatter={priceFormatter} carritoFav={favourites} cart={cart} agregarProductoAlCarrito={agregarProductoAlCarrito} removeItemFromCart={removeItemFromCart} removeItemFromCartFav={removeItemFromCartFav} clearFav={clearFav} />
                 </Route>
                 <Route path="/order" exact={true} component={Order} />
                 <Route path="/login" exact={true}>

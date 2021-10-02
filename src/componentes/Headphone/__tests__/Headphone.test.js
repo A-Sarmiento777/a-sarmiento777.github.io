@@ -9,6 +9,7 @@ test("Headphone Card test", () => {
 
   let testRenderer = renderer.create(
     <Headphone
+      priceFormatter={() => {}}
       agregarProductoAlCarrito={agregarProductoAlCarrito}
       agregarProductoAlCarritoFav={() => {}}
       removeItemFromCartFav={() => {}}
@@ -29,6 +30,7 @@ test("Headphone Card test", () => {
   testRenderer.update(
     <Router>
       <Headphone
+        priceFormatter={() => {}}
         agregarProductoAlCarrito={agregarProductoAlCarrito}
         agregarProductoAlCarritoFav={() => {}}
         removeItemFromCartFav={() => {}}

@@ -28,9 +28,7 @@ exports[`CheckoutCard Card test 1`] = `
       Increase
     </button>
   </td>
-  <td>
-    6.7
-  </td>
+  <td />
   <td
     onClick={[Function]}
     style={
@@ -72,9 +70,7 @@ exports[`CheckoutCard Card test 2`] = `
       Increase
     </button>
   </td>
-  <td>
-    6.7
-  </td>
+  <td />
   <td
     onClick={[Function]}
     style={

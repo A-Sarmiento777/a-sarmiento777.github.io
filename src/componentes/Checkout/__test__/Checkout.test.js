@@ -12,7 +12,7 @@ test("It should render completed Checkout", async () => {
   let testRenderer;
   await act(async () => {
     testRenderer = create(
-        <Checkout removeItemFromCart={() => {}} increment={() => {}} decrement={() => {}} removeItemFromCartFav={() => {}} clearCart={() => {}} getCart={() => {}} cart={[]} />
+        <Checkout priceFormatter={() => {}} removeItemFromCart={() => {}} increment={() => {}} decrement={() => {}} removeItemFromCartFav={() => {}} clearCart={() => {}} getCart={() => {}} cart={[]} />
         );
   });
 

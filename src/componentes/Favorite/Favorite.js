@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router';
 import FavoriteCard from '../FavoriteCard/FavoriteCard';
 
-const Favorite = ({ carritoFav, agregarProductoAlCarrito, cart, removeItemFromCartFav, clearFav }) => {
+const Favorite = ({priceFormatter, carritoFav, agregarProductoAlCarrito, cart, removeItemFromCartFav, clearFav }) => {
     const history = useHistory()
     let amount = carritoFav?.map(a => a.price)
     let totalAmount = amount?.reduce((a, b) => a + b, 0)
@@ -32,7 +32,7 @@ const Favorite = ({ carritoFav, agregarProductoAlCarrito, cart, removeItemFromCa
                 <tbody>
                     {carritoFav?.map((producto, index) => {
                         return (
-                            <FavoriteCard key={index + 1} removeItemFromCartFav={removeItemFromCartFav} producto={producto} />
+                            <FavoriteCard key={index + 1} priceFormatter={priceFormatter} removeItemFromCartFav={removeItemFromCartFav} producto={producto} />
                         )
                     })}
                 </tbody>
@@ -41,11 +41,11 @@ const Favorite = ({ carritoFav, agregarProductoAlCarrito, cart, removeItemFromCa
             {carritoFav.length ?
                 <div className="mx-auto">
                     <div>
-                        Price: {totalAmount - ((totalAmount * 25) / 100) + ' $'}
+                        Price: {priceFormatter(totalAmount - ((totalAmount * 25) / 100)) + ' $'}
 
                     </div>
                     <div>
-                        Incl tax: {totalAmount + ' $'}
+                        Incl tax: {priceFormatter(totalAmount) + ' $'}
 
                     </div>
                     <div className="text-center mx-auto">

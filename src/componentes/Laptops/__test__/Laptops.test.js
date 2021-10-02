@@ -12,7 +12,7 @@ test("It should render completed Laptops", async () => {
   let testRenderer;
   await act(async () => {
     testRenderer = create(
-      <Laptops agregarProductoAlCarrito={() => {}} agregarProductoAlCarritoFav={() => {}} removeItemFromCartFav={() => {}} cart={[]} favProducts={[]} />
+      <Laptops priceFormatter={() => {}} agregarProductoAlCarrito={() => {}} agregarProductoAlCarritoFav={() => {}} removeItemFromCartFav={() => {}} cart={[]} favProducts={[]} />
     );
   });
 

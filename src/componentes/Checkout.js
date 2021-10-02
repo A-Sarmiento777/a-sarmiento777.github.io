@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router';
 
-const Checkout = ({ removeItemFromCart, increment, decrement, clearCart, getCart, cart }) => {
+const Checkout = ({priceFormatter, removeItemFromCart, increment, decrement, clearCart, getCart, cart }) => {
 
     const history = useHistory()
 
@@ -34,8 +34,8 @@ const Checkout = ({ removeItemFromCart, increment, decrement, clearCart, getCart
                                 <tr key="index">
                                     <td><img src={process.env.PUBLIC_URL + `/Assets/${producto?.type}/${producto.type === 'mobiles' || producto.type === 'laptops' ? producto.name?.replace(' ', '') : producto.name}.jpg`} width='100' alt="logos" className="img-fluid py-2" /></td>
                                     <td>{producto?.name}</td>
-                                    <td><button onClick={() => decrement(producto?.id, producto?.quantity)}>Decrease</button>{'  '}{producto?.quantity}{'  '}<button onClick={() => increment(producto?.id, producto?.quantity)}>Increase</button></td>
-                                    <td>{producto?.price * producto?.quantity}</td>
+                                    <td><img src={process.env.PUBLIC_URL + `/Assets/minus.png`} width='30' alt="logo" onClick={() => decrement(producto?.id, producto?.quantity)}/>{'  '}{producto?.quantity}{'  '}<img src={process.env.PUBLIC_URL + `/Assets/plus.png`} width='30' alt="logo" onClick={() => increment(producto?.id, producto?.quantity)}/></td>
+                                    <td>{priceFormatter(producto?.price * producto?.quantity)}</td>
                                     <td onClick={() => removeItemFromCart(producto?.id)} style={{ color: 'red' }}>Remove</td>
                                 </tr>
                             </>
@@ -47,11 +47,11 @@ const Checkout = ({ removeItemFromCart, increment, decrement, clearCart, getCart
             {cart.length ? 
                 <div  className="mx-auto">
                 <div>
-                Price: {totalAmount - ((totalAmount * 25) / 100) + ' $'}
+                Price: {priceFormatter(totalAmount - ((totalAmount * 25) / 100))}
                     
                 </div>
                 <div>
-                Incl tax: {totalAmount + ' $'}
+                Incl tax: {priceFormatter(totalAmount)}
 
                 </div>
                 <div className="text-center mx-auto">

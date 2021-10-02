@@ -9,6 +9,7 @@ test("Laptop Card test", () => {
 
   let testRenderer = renderer.create(
     <Laptop
+      priceFormatter={() => {}}
       agregarProductoAlCarrito={agregarProductoAlCarrito}
       agregarProductoAlCarritoFav={() => {}}
       removeItemFromCartFav={() => {}}
@@ -29,6 +30,7 @@ test("Laptop Card test", () => {
   testRenderer.update(
     <Router>
       <Laptop
+        priceFormatter={() => {}}
         agregarProductoAlCarrito={agregarProductoAlCarrito}
         agregarProductoAlCarritoFav={() => {}}
         removeItemFromCartFav={() => {}}

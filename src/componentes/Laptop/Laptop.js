@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Laptop = ({ agregarProductoAlCarrito, agregarProductoAlCarritoFav, removeItemFromCartFav, cart, favProducts, laptop }) => {
+const Laptop = ({priceFormatter, agregarProductoAlCarrito, agregarProductoAlCarritoFav, removeItemFromCartFav, cart, favProducts, laptop }) => {
     return (
         <div className="card mr-4 mb-4 p-3 shadow p-3 mb-5 bg-white rounded " style={{ width: "200px", minWidth: "30px" }}>
             <div className="h6">{laptop?.name}</div>
-            <div className="h6"> <small> Price: {laptop?.price} $ </small></div>
+            <div className="h6"> <small> Price: {priceFormatter(laptop?.price)} </small></div>
             <div className="mx-auto">
                 <img src={process.env.PUBLIC_URL + `/Assets/laptops/${laptop?.name?.replace(' ', '')}.jpg`} width='150' alt="logos" className="img-fluid py-2" />
             </div>

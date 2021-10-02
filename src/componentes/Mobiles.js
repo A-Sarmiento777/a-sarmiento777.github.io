@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { apiURL } from '../Utils/ApiUrl';
 
 
-const Mobiles = ({agregarProductoAlCarrito, agregarProductoAlCarritoFav, removeItemFromCartFav, cart, favProducts}) => {
+const Mobiles = ({priceFormatter, agregarProductoAlCarrito, agregarProductoAlCarritoFav, removeItemFromCartFav, cart, favProducts}) => {
 
 
 	const [mobiles, setMobiles] = useState([])

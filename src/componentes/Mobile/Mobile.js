@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Mobile = ({ agregarProductoAlCarrito, agregarProductoAlCarritoFav, removeItemFromCartFav, cart, favProducts, mobile }) => {
+const Mobile = ({ priceFormatter, agregarProductoAlCarrito, agregarProductoAlCarritoFav, removeItemFromCartFav, cart, favProducts, mobile }) => {
     return (
         <div className="card mr-4 mb-4 p-3 shadow p-3 mb-5 bg-white rounded " style={{ width: "200px", minWidth: "30px" }}>
             <div className="h6">{mobile?.name}</div>
-            <div className="h6"> <small> Price: {mobile?.price} $ </small></div>
+            <div className="h6"> <small> Price: {priceFormatter(mobile?.price)} </small></div>
             <div className="mx-auto">
                 <img src={process.env.PUBLIC_URL + `/Assets/mobiles/${mobile?.name?.replace(' ', '')}.jpg`} width='150' alt="logos" className="img-fluid py-2" />
             </div>

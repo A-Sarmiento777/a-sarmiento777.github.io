@@ -12,7 +12,7 @@ test("It should render completed Headphones", async () => {
   let testRenderer;
   await act(async () => {
     testRenderer = create(
-      <Headphones agregarProductoAlCarrito={() => {}} agregarProductoAlCarritoFav={() => {}} removeItemFromCartFav={() => {}} cart={[]} favProducts={[]} />
+      <Headphones priceFormatter={() => {}} agregarProductoAlCarrito={() => {}} agregarProductoAlCarritoFav={() => {}} removeItemFromCartFav={() => {}} cart={[]} favProducts={[]} />
     );
   });
 

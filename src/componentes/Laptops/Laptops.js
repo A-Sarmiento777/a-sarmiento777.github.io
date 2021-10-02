@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 //import { apiURL } from '../../Utils/ApiUrl';
 import Laptop from '../Laptop/Laptop';
 
-const Laptops = ({agregarProductoAlCarrito, agregarProductoAlCarritoFav, removeItemFromCartFav, cart, favProducts}) => {
+const Laptops = ({priceFormatter, agregarProductoAlCarrito, agregarProductoAlCarritoFav, removeItemFromCartFav, cart, favProducts}) => {
 	const [laptops, setLaptops] = useState([])
 
 	useEffect(() => {
@@ -31,7 +31,7 @@ const Laptops = ({agregarProductoAlCarrito, agregarProductoAlCarritoFav, removeI
 			<div className="d-flex flex-wrap justify-content-center">
 			{laptops && laptops.map( (laptop, index) => {
 				return (
-					<Laptop agregarProductoAlCarrito={agregarProductoAlCarrito} agregarProductoAlCarritoFav={agregarProductoAlCarritoFav} removeItemFromCartFav={removeItemFromCartFav} cart={cart} favProducts={favProducts} laptop={laptop}/>
+					<Laptop priceFormatter={priceFormatter} agregarProductoAlCarrito={agregarProductoAlCarrito} agregarProductoAlCarritoFav={agregarProductoAlCarritoFav} removeItemFromCartFav={removeItemFromCartFav} cart={cart} favProducts={favProducts} laptop={laptop}/>
 				)
 			})}
 			</div>

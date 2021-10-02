@@ -9,6 +9,7 @@ test("CheckoutCard Card test", () => {
 
   let testRenderer = renderer.create(
     <CheckoutCard
+      priceFormatter={() => {}}
     removeItemFromCart={removeItemFromCart}
     increment={() => {}}
     decrement={() => {}}
@@ -29,6 +30,7 @@ test("CheckoutCard Card test", () => {
   testRenderer.update(
     <Router>
       <CheckoutCard
+        priceFormatter={() => {}}
         removeItemFromCart={removeItemFromCart}
         increment={() => {}}
         decrement={() => {}}

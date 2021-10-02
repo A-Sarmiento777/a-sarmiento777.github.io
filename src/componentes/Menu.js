@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import './Menu.css'
 
 const Menu = ({ count, countFav, handleLogout, isLoggedIn, user }) => {
 
@@ -28,7 +29,7 @@ const Menu = ({ count, countFav, handleLogout, isLoggedIn, user }) => {
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
                         <span className="navbar-toggler-icon bg-dark"></span>
                     </button>
-                </div>
+                </div>       
                 <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item active">
@@ -47,9 +48,9 @@ const Menu = ({ count, countFav, handleLogout, isLoggedIn, user }) => {
                                 <img src={process.env.PUBLIC_URL + `/Assets/shopping-cart.png`} width='30' alt="logo" />
                             </NavLink>
                         </li>
-                        <li className="nav-item active"> 
+                        <li className="nav-item active logoutBtn"> 
                             {isLoggedIn === true ?
-                                <button onClick={handleLogout}>Log Out</button> :
+                                <img src={process.env.PUBLIC_URL + `/Assets/logout.ico`} width='40' alt="logo" onClick={handleLogout} /> :
                                 <NavLink className="nav-link" to="/login">
                                     <img src={process.env.PUBLIC_URL + `/Assets/login.png`} width='30' alt="logo" />
                                 </NavLink>

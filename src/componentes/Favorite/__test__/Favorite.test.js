@@ -12,7 +12,7 @@ test("It should render completed Favorite", async () => {
   let testRenderer;
   await act(async () => {
     testRenderer = create(
-        <Favorite carritoFav={[{ id: 1, type: 'saadad', name: "Test", price: "6.7" }]} removeItemFromCartFav={() => {}} clearFav={() => {}}/>
+        <Favorite priceFormatter={() => {}} carritoFav={[{ id: 1, type: 'saadad', name: "Test", price: "6.7" }]} removeItemFromCartFav={() => {}} clearFav={() => {}}/>
         );
   });
 

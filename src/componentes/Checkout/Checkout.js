@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useHistory } from 'react-router';
 import CheckoutCard from '../CheckoutCard/CheckoutCard';
 
-const Checkout = ({ removeItemFromCart, increment, decrement, clearCart, getCart, cart }) => {
+const Checkout = ({priceFormatter, removeItemFromCart, increment, decrement, clearCart, getCart, cart }) => {
 
     const history = useHistory()
 	let amount = cart && cart?.length && cart.map(a => parseInt(a.price) * parseInt(a.quantity))
@@ -26,7 +26,7 @@ const Checkout = ({ removeItemFromCart, increment, decrement, clearCart, getCart
                 <tbody>
                     {cart?.map( (producto, index) => {
                         return (
-                            <CheckoutCard removeItemFromCart={removeItemFromCart} increment={increment} decrement={decrement} getCart={getCart} cart={cart} producto={producto}/>
+                            <CheckoutCard priceFormatter={priceFormatter} removeItemFromCart={removeItemFromCart} increment={increment} decrement={decrement} getCart={getCart} cart={cart} producto={producto}/>
                         )
                     })}
                 </tbody>
@@ -35,11 +35,11 @@ const Checkout = ({ removeItemFromCart, increment, decrement, clearCart, getCart
             {cart.length ? 
                 <div  className="mx-auto">
                 <div>
-                Price: {totalAmount - ((totalAmount * 25) / 100) + ' $'}
+                Price: {priceFormatter(totalAmount - ((totalAmount * 25) / 100))}
                     
                 </div>
                 <div>
-                Incl tax: {totalAmount + ' $'}
+                Incl tax: {priceFormatter(totalAmount)}
 
                 </div>
                 <div className="text-center mx-auto">

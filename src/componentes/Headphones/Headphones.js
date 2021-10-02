@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 //import { apiURL } from "../../Utils/ApiUrl";
 import Headphone from "../Headphone/Headphone";
 
-const Headphones = ({ agregarProductoAlCarrito, agregarProductoAlCarritoFav, removeItemFromCartFav, cart, favProducts }) => {
+const Headphones = ({priceFormatter, agregarProductoAlCarrito, agregarProductoAlCarritoFav, removeItemFromCartFav, cart, favProducts }) => {
   const [headphones, setHeadphones] = useState([]);
 
   async function getHeadphones() {
@@ -30,7 +30,7 @@ const Headphones = ({ agregarProductoAlCarrito, agregarProductoAlCarritoFav, rem
         {headphones &&
           headphones.map((headphone, index) => {
             return (
-				<Headphone agregarProductoAlCarrito={agregarProductoAlCarrito} agregarProductoAlCarritoFav={agregarProductoAlCarritoFav} removeItemFromCartFav={removeItemFromCartFav} cart={cart} favProducts={favProducts} headphone={headphone}/>
+				<Headphone priceFormatter={priceFormatter} agregarProductoAlCarrito={agregarProductoAlCarrito} agregarProductoAlCarritoFav={agregarProductoAlCarritoFav} removeItemFromCartFav={removeItemFromCartFav} cart={cart} favProducts={favProducts} headphone={headphone}/>
             );
           })}
       </div>

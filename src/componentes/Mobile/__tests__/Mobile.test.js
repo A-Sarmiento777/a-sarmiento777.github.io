@@ -9,6 +9,7 @@ test("Mobile Card test", () => {
 
   let testRenderer = renderer.create(
     <Mobile
+      priceFormatter={() => {}}
       agregarProductoAlCarrito={agregarProductoAlCarrito}
       agregarProductoAlCarritoFav={() => {}}
       removeItemFromCartFav={() => {}}
@@ -29,6 +30,7 @@ test("Mobile Card test", () => {
   testRenderer.update(
     <Router>
       <Mobile
+        priceFormatter={() => {}}
         agregarProductoAlCarrito={agregarProductoAlCarrito}
         agregarProductoAlCarritoFav={() => {}}
         removeItemFromCartFav={() => {}}

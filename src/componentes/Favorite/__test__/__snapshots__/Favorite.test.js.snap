@@ -69,9 +69,7 @@ exports[`It should render completed Favorite 1`] = `
         <td>
           Test
         </td>
-        <td>
-          6.7
-        </td>
+        <td />
         <td
           onClick={[Function]}
           style={
@@ -90,11 +88,11 @@ exports[`It should render completed Favorite 1`] = `
   >
     <div>
       Price: 
-      5.025 $
+      undefined $
     </div>
     <div>
       Incl tax: 
-      06.7 $
+      undefined $
     </div>
     <div
       className="text-center mx-auto"

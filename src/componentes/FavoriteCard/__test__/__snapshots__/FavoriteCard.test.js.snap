@@ -13,9 +13,7 @@ exports[`FavoriteCard Card test 1`] = `
   <td>
     Test
   </td>
-  <td>
-    6.7
-  </td>
+  <td />
   <td
     onClick={[Function]}
     style={

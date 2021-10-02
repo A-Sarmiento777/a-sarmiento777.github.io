@@ -9,6 +9,7 @@ test("FavoriteCard Card test", () => {
 
   let testRenderer = renderer.create(
     <FavoriteCard
+      priceFormatter={() => {}}
     removeItemFromCartFav={removeItemFromCartFav} 
     producto={{ id: 1, type: 'saadad', name: "Test", price: "6.7" }}
     ></FavoriteCard>
