@@ -41,11 +41,11 @@ const Favorite = ({priceFormatter, carritoFav, agregarProductoAlCarrito, cart, r
             {carritoFav.length ?
                 <div className="mx-auto">
                     <div>
-                        Price: {priceFormatter(totalAmount - ((totalAmount * 25) / 100)) + ' $'}
+                        Price: {priceFormatter(totalAmount - ((totalAmount * 25) / 100))}
 
                     </div>
                     <div>
-                        Incl tax: {priceFormatter(totalAmount) + ' $'}
+                        Incl tax: {priceFormatter(totalAmount)}
 
                     </div>
                     <div className="text-center mx-auto">
