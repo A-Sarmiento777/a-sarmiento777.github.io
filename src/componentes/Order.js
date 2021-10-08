@@ -5,7 +5,7 @@ const Order = () => {
 			<div className="row py-5">
 				<div className="col">
 					<div className="border-bottom">
-						<h3 className="text-center"> Thanks for your order. We will ship to you briefly.</h3>
+						<h3 className="text-center"> Tack för din order. Vi skickar den snart.</h3>
 					</div>			
 			</div>
 			

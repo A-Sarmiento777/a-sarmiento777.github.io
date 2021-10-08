@@ -20,7 +20,7 @@ exports[`Mobile Card test 1`] = `
   >
      
     <small>
-       Price: 
+       Pris: 
        
     </small>
   </div>
@@ -49,7 +49,7 @@ exports[`Mobile Card test 1`] = `
       className="bg-warning px-1 rounded ml-2"
       onClick={[Function]}
     >
-      Add
+      Lägg till
     </button>
   </div>
 </div>
@@ -75,7 +75,7 @@ exports[`Mobile Card test 2`] = `
   >
      
     <small>
-       Price: 
+       Pris: 
        
     </small>
   </div>
@@ -107,7 +107,7 @@ exports[`Mobile Card test 2`] = `
       <button
         className="bg-success px-1 rounded ml-2"
       >
-        View Cart
+        Varukorgen
       </button>
     </a>
   </div>

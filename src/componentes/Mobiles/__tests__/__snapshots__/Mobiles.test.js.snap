@@ -5,7 +5,7 @@ exports[`It should render completed Mobiles 1`] = `
   className="pt-4 text-center"
 >
   <h1>
-    Mobiles
+    Mobiltelefoner
   </h1>
   <div
     className="d-flex flex-wrap justify-content-center"

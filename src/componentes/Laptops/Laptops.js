@@ -26,7 +26,7 @@ const Laptops = ({priceFormatter, agregarProductoAlCarrito, agregarProductoAlCar
 	}
 	return (
 		<div className="pt-4 text-center"> 
-			<h1>Laptops</h1>
+			<h1>Bärbara Datorer</h1>
 			
 			<div className="d-flex flex-wrap justify-content-center">
 			{laptops && laptops.map( (laptop, index) => {

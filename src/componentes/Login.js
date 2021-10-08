@@ -66,32 +66,32 @@ const history = useHistory()
 	return (
 	<div className = "container d-flex justify-content-center mt-5" >
 		<div className = "card col-4 shadow-lg p-3 mb-5 bg-white rounded text-center" style={{minWidth:"300px"}} >
-			<h2 className="pb-3">Log in</h2>
+			<h2 className="pb-3">Logga in</h2>
 			<form
             onSubmit={onSubmit}
             >
 				<div className ="form-group">
-					<label for="exampleInputEmail1" className ="col-12 text-left pl-1">Email address</label>
+					<label for="exampleInputEmail1" className ="col-12 text-left pl-1">Email</label>
 					<input
 						type="email"
 						className="form-control"
 						id="email"
 						name="email"
-						placeholder=" Write your email"
+						placeholder=" Skriv din email"
 						value={email}
 						onChange={onChange}
 					/>
 				</div>
 
 				<div className ="form-group">
-					<label for="exampleInputPassword1" className ="col-12 text-left pl-1">Password</label>
+					<label for="exampleInputPassword1" className ="col-12 text-left pl-1">Lösenord</label>
 					<input
 						type="password"
 						className="form-control"
 						id="password"
 						minlength='8'
 						name="password"
-						placeholder="Write a password"
+						placeholder="Skriv ditt lösenord"
 						value ={password}
 						onChange={onChange}
 					/>

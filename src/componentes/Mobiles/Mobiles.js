@@ -27,7 +27,7 @@ const Mobiles = ({priceFormatter, agregarProductoAlCarrito, agregarProductoAlCar
 
 	return (
 		<div className="pt-4 text-center">
-			<h1>Mobiles</h1>
+			<h1>Mobiltelefoner</h1>
 			<div className="d-flex flex-wrap justify-content-center">
 			{mobiles && mobiles.map((mobile, index) => {
 				return (

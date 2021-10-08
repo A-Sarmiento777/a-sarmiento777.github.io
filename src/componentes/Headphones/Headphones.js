@@ -25,7 +25,7 @@ const Headphones = ({priceFormatter, agregarProductoAlCarrito, agregarProductoAl
 
   return (
     <div className="pt-4 text-center" data-testid="headphones1">
-      <h1>Headphones</h1>
+      <h1>Hörlurar</h1>
       <div className="d-flex flex-wrap justify-content-center">
         {headphones &&
           headphones.map((headphone, index) => {

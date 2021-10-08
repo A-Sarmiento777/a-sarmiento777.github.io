@@ -58,7 +58,7 @@ const Register = (props) => {
 		e.preventDefault();
 		console.log(usuario)
 		if (usuario.password !== usuario.confirm) {
-			alert('Password doesnot match !!!')
+			alert('Lösenord är inte samma!')
 		} else {
 			register(usuario)
 		}
@@ -73,18 +73,18 @@ const Register = (props) => {
 	return (
 		<div className="container d-flex justify-content-center mt-5"  >
 			<div className="card col-4 shadow-lg p-3 mb-5 bg-white rounded text-center" style={{ minWidth: "300px" }}>
-				<h1 className="pb-3">Register</h1>
+				<h1 className="pb-3">Registrera dig</h1>
 				<form
 					onSubmit={onSubmit}
 				>
 					<div className="form-group">
-						<label className="col-12 text-left pl-1" htmlFor="name">User name</label>
+						<label className="col-12 text-left pl-1" htmlFor="name">Användare</label>
 						<input
 							className="form-control"
 							type="text"
 							id="name"
 							name="name"
-							placeholder="Your name"
+							placeholder="Ditt namn"
 							value={name}
 							onChange={onChange} />
 					</div>
@@ -96,33 +96,33 @@ const Register = (props) => {
 							type="email"
 							id="email"
 							name="email"
-							placeholder="Your email"
+							placeholder="Skriv din email"
 							value={email}
 							onChange={onChange} />
 					</div>
 
 					<div lassName="form-group">
-						<label className="col-12 text-left pl-1" htmlFor="password">Password</label>
+						<label className="col-12 text-left pl-1" htmlFor="password">Lösenord</label>
 						<input
 							className="form-control"
 							type="password"
 							id="password"
 							name="password"
-							placeholder="Your password"
+							placeholder="Ditt lösenord"
 							minlength='8'
 							value={password}
 							onChange={onChange} />
 					</div>
 
 					<div lassName="form-group">
-						<label className="col-12 text-left pl-1" htmlFor="confirm">Repeat password</label>
+						<label className="col-12 text-left pl-1" htmlFor="confirm">Upprepa Lösenord</label>
 						<input
 							className="form-control"
 							type="password"
 							id="confirm"
 							name="confirm"
 							minlength='8'
-							placeholder="Confirm your password"
+							placeholder="Bekräfta ditt lösenord"
 							value={confirm}
 							onChange={onChange} />
 					</div>
@@ -134,7 +134,7 @@ const Register = (props) => {
 				</form>
 
 				<Link to={'/'}>
-					Back to home
+					Hem
 				</Link>
 			</div>
 		</div>

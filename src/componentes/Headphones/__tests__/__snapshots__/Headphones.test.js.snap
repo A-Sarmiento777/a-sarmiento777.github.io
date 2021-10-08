@@ -6,7 +6,7 @@ exports[`It should render completed Headphones 1`] = `
   data-testid="headphones1"
 >
   <h1>
-    Headphones
+    Hörlurar
   </h1>
   <div
     className="d-flex flex-wrap justify-content-center"

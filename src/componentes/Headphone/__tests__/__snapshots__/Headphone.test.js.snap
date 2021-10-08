@@ -19,7 +19,7 @@ exports[`Headphone Card test 1`] = `
     className="h6"
   >
     <small>
-       Price: 
+       Pris: 
        
     </small>
   </div>
@@ -48,7 +48,7 @@ exports[`Headphone Card test 1`] = `
       className="bg-warning px-1 rounded ml-2"
       onClick={[Function]}
     >
-      Add
+      Lägg till
     </button>
   </div>
 </div>
@@ -73,7 +73,7 @@ exports[`Headphone Card test 2`] = `
     className="h6"
   >
     <small>
-       Price: 
+       Pris: 
        
     </small>
   </div>
@@ -105,7 +105,7 @@ exports[`Headphone Card test 2`] = `
       <button
         className="bg-success px-1 rounded ml-2"
       >
-        View Cart
+        Varukorgen
       </button>
     </a>
   </div>
