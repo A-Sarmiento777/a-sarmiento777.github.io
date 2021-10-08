@@ -15,10 +15,10 @@ const Favorite = ({ carritoFav, agregarProductoAlCarrito, removeItemFromCartFav,
             {carritoFav.length ? <table style={{ width: '100%' }}>
                 <thead>
                     <tr>
-                        <td style={{ fontWeight: 'bold' }}>Product</td>
-                        <td style={{ fontWeight: 'bold' }}>Title</td>
-                        <td style={{ fontWeight: 'bold' }}>Price</td>
-                        <td style={{ fontWeight: 'bold' }}>Remove</td>
+                        <td style={{ fontWeight: 'bold' }}>Produkt</td>
+                        <td style={{ fontWeight: 'bold' }}>Namn</td>
+                        <td style={{ fontWeight: 'bold' }}>Pris</td>
+                        <td style={{ fontWeight: 'bold' }}>Ta bort</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -29,26 +29,26 @@ const Favorite = ({ carritoFav, agregarProductoAlCarrito, removeItemFromCartFav,
                                     <td><img src={process.env.PUBLIC_URL + `/Assets/${producto.type}/${producto.name}.jpg`} width='100' alt="logos" className="img-fluid py-2" /></td>
                                     <td>{producto.name}</td>
                                     <td>{producto.price}</td>
-                                    <td onClick={() => removeItemFromCartFav(producto.id)} style={{ color: 'red' }}>Remove</td>
+                                    <td onClick={() => removeItemFromCartFav(producto.id)} style={{ color: 'red' }}>Radera</td>
                                 </tr>
                             </>
                         )
                     })}
                 </tbody>
-            </table> : <h4>Nothing in Fav! Please Add some items</h4>}
+            </table> : <h4>Finns inget i favoriter. Lägg gärna något produkt.</h4>}
 
             {carritoFav.length ?
                 <div className="mx-auto">
                     <div>
-                        Price: {totalAmount - ((totalAmount * 25) / 100) + ' $'}
+                        Pris: {totalAmount - ((totalAmount * 25) / 100) + ' $'}
 
                     </div>
                     <div>
-                        Incl tax: {totalAmount + ' $'}
+                        Inkl moms: {totalAmount + ' $'}
 
                     </div>
                     <div className="text-center mx-auto">
-                        <button className="p-1 rounded" style={{ backgroundColor: 'black', color: 'white' }} onClick={addFavToCart}>Add to Cart from Favourites</button>
+                        <button className="p-1 rounded" style={{ backgroundColor: 'black', color: 'white' }} onClick={addFavToCart}>Lägg till varukorgen</button>
                         {/* <button className="p-1 rounded" style={{ backgroundColor: 'black', color: 'white' }} onClick={() => {
                         clearFav()
                         history.push('/home')

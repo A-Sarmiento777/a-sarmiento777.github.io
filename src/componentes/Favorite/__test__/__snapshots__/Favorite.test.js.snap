@@ -25,7 +25,7 @@ exports[`It should render completed Favorite 1`] = `
             }
           }
         >
-          Product
+          Produkt
         </td>
         <td
           style={
@@ -34,7 +34,7 @@ exports[`It should render completed Favorite 1`] = `
             }
           }
         >
-          Title
+          Namn
         </td>
         <td
           style={
@@ -43,7 +43,7 @@ exports[`It should render completed Favorite 1`] = `
             }
           }
         >
-          Price
+          Pris
         </td>
         <td
           style={
@@ -52,7 +52,7 @@ exports[`It should render completed Favorite 1`] = `
             }
           }
         >
-          Remove
+          Ta bort
         </td>
       </tr>
     </thead>
@@ -78,7 +78,7 @@ exports[`It should render completed Favorite 1`] = `
             }
           }
         >
-          Remove
+          Radera
         </td>
       </tr>
     </tbody>
@@ -87,10 +87,10 @@ exports[`It should render completed Favorite 1`] = `
     className="mx-auto"
   >
     <div>
-      Price: 
+      Pris: 
     </div>
     <div>
-      Incl tax: 
+      Inkl moms: 
     </div>
     <div
       className="text-center mx-auto"
@@ -105,7 +105,7 @@ exports[`It should render completed Favorite 1`] = `
           }
         }
       >
-        Add to Cart from Favourites
+        Lägg till varukorgen
       </button>
     </div>
   </div>

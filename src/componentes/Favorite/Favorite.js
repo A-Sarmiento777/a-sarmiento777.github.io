@@ -23,10 +23,10 @@ const Favorite = ({priceFormatter, carritoFav, agregarProductoAlCarrito, cart, r
             {carritoFav.length ? <table style={{ width: '100%' }}>
                 <thead>
                     <tr>
-                        <td style={{ fontWeight: 'bold' }}>Product</td>
-                        <td style={{ fontWeight: 'bold' }}>Title</td>
-                        <td style={{ fontWeight: 'bold' }}>Price</td>
-                        <td style={{ fontWeight: 'bold' }}>Remove</td>
+                        <td style={{ fontWeight: 'bold' }}>Produkt</td>
+                        <td style={{ fontWeight: 'bold' }}>Namn</td>
+                        <td style={{ fontWeight: 'bold' }}>Pris</td>
+                        <td style={{ fontWeight: 'bold' }}>Ta bort</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -36,16 +36,16 @@ const Favorite = ({priceFormatter, carritoFav, agregarProductoAlCarrito, cart, r
                         )
                     })}
                 </tbody>
-            </table> : <h4>Nothing in Fav! Please Add some items</h4>}
+            </table> : <h4>Finns inget i favoriter. Lägg gärna något produkt.</h4>}
 
             {carritoFav.length ?
                 <div className="mx-auto">
                     <div>
-                        Price: {priceFormatter(totalAmount - ((totalAmount * 25) / 100))}
+                        Pris: {priceFormatter(totalAmount - ((totalAmount * 25) / 100))}
 
                     </div>
                     <div>
-                        Incl tax: {priceFormatter(totalAmount)}
+                        Inkl moms: {priceFormatter(totalAmount)}
 
                     </div>
                     <div className="text-center mx-auto">
@@ -53,7 +53,7 @@ const Favorite = ({priceFormatter, carritoFav, agregarProductoAlCarrito, cart, r
                         clearFav()
                         history.push('/home')
                     }}>Clear Favourites</button> */}
-                        <button className="p-1 rounded" style={{ backgroundColor: 'black', color: 'white' }} onClick={addFavToCart}>Add to Cart from Favourites</button>
+                        <button className="p-1 rounded" style={{ backgroundColor: 'black', color: 'white' }} onClick={addFavToCart}>Lägg till varukorgen</button>
                     </div>
                 </div>
                 : null}
