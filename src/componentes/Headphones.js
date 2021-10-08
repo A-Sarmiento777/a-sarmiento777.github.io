@@ -28,7 +28,7 @@ const Headphones = ({agregarProductoAlCarrito,agregarProductoAlCarritoFav, remov
 	}
 	return (
 		<div className="pt-4 text-center">
-			<h1>Headphones</h1>
+			<h2>Headphones</h2>
 			<div className="d-flex flex-wrap justify-content-center">
 			{headphones && headphones.map( (headphone, index) => {
 				console.log(headphone?.name)

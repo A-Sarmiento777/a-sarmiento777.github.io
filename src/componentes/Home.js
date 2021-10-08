@@ -5,7 +5,7 @@ const Home = () => {
 			<div className="row py-5">
 				<div className="col">
 					<div className="border-bottom">
-						<h1 className="text-center"> Our products</h1>
+						<h1 className="text-center"> Våra produkter</h1>
 					</div>			
 			</div>
 			

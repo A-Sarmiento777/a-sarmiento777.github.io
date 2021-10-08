@@ -12,16 +12,16 @@ const Menu = ({ count, countFav, handleLogout, isLoggedIn, user }) => {
                     <h2 className="mr-5">VenCub</h2>
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item active">
-                            <NavLink className="nav-link active" style={{ color: "black" }} to="/" > Home <span className="sr-only">(current)</span> </NavLink>
+                            <NavLink className="nav-link active" style={{ color: "black" }} to="/" > Hem <span className="sr-only">(current)</span> </NavLink>
                         </li>
                         <li className="nav-item active">
-                            <NavLink className="nav-link" style={{ color: "black" }} to="/mobiles" >Mobiles</NavLink>
+                            <NavLink className="nav-link" style={{ color: "black" }} to="/mobiles" >Mobil</NavLink>
                         </li>
                         <li className="nav-item active">
-                            <NavLink className="nav-link" style={{ color: "black" }} to="/headphones" > Headphones</NavLink>
+                            <NavLink className="nav-link" style={{ color: "black" }} to="/headphones" > Hörlurar</NavLink>
                         </li>
                         <li className="nav-item active">
-                            <NavLink className="nav-link" style={{ color: "black" }} to="/laptops" > Laptops</NavLink>
+                            <NavLink className="nav-link" style={{ color: "black" }} to="/laptops" > Bärbara datorer</NavLink>
                         </li>
                     </ul>
                 </div>
