@@ -20,11 +20,11 @@ const Checkout = ({priceFormatter, removeItemFromCart, increment, decrement, cle
             {cart.length ? <table style={{ width: '100%' }}>
                 <thead>
                     <tr>
-                        <td style={{ fontWeight: 'bold' }}>Product</td>
-                        <td style={{ fontWeight: 'bold' }}>Title</td>
-                        <td style={{ fontWeight: 'bold' }}>Quantity</td>
-                        <td style={{ fontWeight: 'bold' }}>Price</td>
-                        <td style={{ fontWeight: 'bold' }}>Remove</td>
+                        <td style={{ fontWeight: 'bold' }}>Produkt</td>
+                        <td style={{ fontWeight: 'bold' }}>Namn</td>
+                        <td style={{ fontWeight: 'bold' }}>Antal</td>
+                        <td style={{ fontWeight: 'bold' }}>Pris</td>
+                        <td style={{ fontWeight: 'bold' }}>Ta bort</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -36,29 +36,29 @@ const Checkout = ({priceFormatter, removeItemFromCart, increment, decrement, cle
                                     <td>{producto?.name}</td>
                                     <td><img src={process.env.PUBLIC_URL + `/Assets/minus.png`} width='30' alt="logo" onClick={() => decrement(producto?.id, producto?.quantity)}/>{'  '}{producto?.quantity}{'  '}<img src={process.env.PUBLIC_URL + `/Assets/plus.png`} width='30' alt="logo" onClick={() => increment(producto?.id, producto?.quantity)}/></td>
                                     <td>{priceFormatter(producto?.price * producto?.quantity)}</td>
-                                    <td onClick={() => removeItemFromCart(producto?.id)} style={{ color: 'red' }}>Remove</td>
+                                    <td onClick={() => removeItemFromCart(producto?.id)} style={{ color: 'red' }}>Radera</td>
                                 </tr>
                             </>
                         )
                     })}
                 </tbody>
-            </table> : <h4>Nothing in cart! Please Add some items</h4>}
+            </table> : <h4>Finns inget i varukorgen. Lägg gärna något</h4>}
 
             {cart.length ? 
                 <div  className="mx-auto">
                 <div>
-                Price: {priceFormatter(totalAmount - ((totalAmount * 25) / 100))}
+                Pris: {priceFormatter(totalAmount - ((totalAmount * 25) / 100))}
                     
                 </div>
                 <div>
-                Incl tax: {priceFormatter(totalAmount)}
+                Inkl moms: {priceFormatter(totalAmount)}
 
                 </div>
                 <div className="text-center mx-auto">
                     <button className="p-1 rounded" style={{ backgroundColor: 'black', color: 'white' }} onClick={() => {
                         history.push('/order')
                         clearCart()
-                    }}>Checkout</button>
+                    }}>Checka ut</button>
                 </div>
                 </div>
             : null}
