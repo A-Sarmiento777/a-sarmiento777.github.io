@@ -88,11 +88,9 @@ exports[`It should render completed Favorite 1`] = `
   >
     <div>
       Price: 
-      undefined $
     </div>
     <div>
       Incl tax: 
-      undefined $
     </div>
     <div
       className="text-center mx-auto"
